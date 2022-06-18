@@ -62,6 +62,7 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="table-responsive">
+                                @unless (count($users)==0)
                                 <table class="table text-start align-middle table-bordered table-hover mb-0">
                                     <thead>
                                         <tr class="text-dark">
@@ -117,6 +118,9 @@
                                     </tbody>
                                     @endif
                                 </table>
+                                @else
+                                <h1>No users Found</h1>
+                                @endif
                             </div>
                         </div>
                     </div>
