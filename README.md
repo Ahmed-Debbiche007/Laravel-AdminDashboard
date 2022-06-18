@@ -1,5 +1,5 @@
 # Admin Dashboard - Laravel
-![](storage/Gif/Demo.gif"Quick Demo")
+![](storage/Gif/Demo.gif)
 
 ## Installation
 
