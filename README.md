@@ -1,17 +1,5 @@
 # Admin Dashboard - Laravel
 
-## Requirements
-
-- PHP >= 7.3.0
-- BCMath PHP Extension
-- Ctype PHP Extension
-- JSON PHP Extension
-- Mbstring PHP Extension
-- OpenSSL PHP Extension
-- PDO PHP Extension
-- Tokenizer PHP Extension
-- XML PHP Extension
-
 ## Installation
 
 - Clone the repo and `cd` into it
