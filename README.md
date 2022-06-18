@@ -1,4 +1,5 @@
 # Admin Dashboard - Laravel
+![alt text](storage/Gif/Demo.gif"Quick Demo")
 
 ## Installation
 
