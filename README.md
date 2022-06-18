@@ -1,3 +1,5 @@
+# Admin Dashboard - Laravel
+
 ## Requirements
 
 - PHP >= 7.3.0
