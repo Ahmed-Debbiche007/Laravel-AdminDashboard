@@ -63,6 +63,8 @@ class User extends Authenticatable
         $this->attributes['password'] = bcrypt($value);
     }
 
+    // SearchBar Function
+
     public function scopeFilter ($query, array $filters){
         if ($filters['search']??false){
             $query->where('role', 'like', '%'.request('search').'%')
@@ -70,14 +72,5 @@ class User extends Authenticatable
         ->orWhere ('last_name','like', '%'.request('search').'%')
         ;
         }
-    }
-
-    public function userCount(){
-        return user::all()->count();
-    }
-
-    public function createAdmin()
-    {
-        return ;
     }
 }

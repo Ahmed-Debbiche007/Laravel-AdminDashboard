@@ -16,15 +16,20 @@ class ProfileController extends Controller
 
     public function index($id)
     {
-        return view('profile' , [
+        return view('dashboard.profile' , [
             'users' => user::find($id)
         ]);
     }
 
+    // Show  the admin's "add user" form
+    public function addUsers()
+    {
+        return view('dashboard.addUser', [
+            'users' => user::all()
+        ]);
+    }
     
-
-   
-
+    //This function let the admin add new users
     public function store(Request $request){
         $formFields= $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -39,6 +44,7 @@ class ProfileController extends Controller
         return redirect('/Dashboard');
     }
 
+    //This function let the admin edit any user, let the guest user edit his profile 
     public function update(Request $request, User $user)
     {
         $request->validate([
@@ -55,6 +61,7 @@ class ProfileController extends Controller
         return redirect()->route('home')->withSuccess('Profile updated successfully.');
     }
 
+    //This function let the admin edit any user's password, let the guest user edit his password 
     public function updatePassword(Request $request, User $user){
         $request->validate([
             'password' => 'nullable|required_with:new_password',
@@ -73,6 +80,7 @@ class ProfileController extends Controller
         return redirect()->route('home')->withSuccess('Profile updated successfully.');
     }
 
+    //This function let the admin delete any users
     public function destroy(User $user){
         $user->delete();
         return redirect()->route('home')->withSuccess('Profile deleted successfully.');

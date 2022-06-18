@@ -24,33 +24,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home', [
-            'users' => user::latest()->filter(request(['search']))->paginate(5),
+        return view('dashboard.home', [
+            'users' => user::latest()->filter(request(['search']))->paginate(10),
             'allUsers' => user::latest() -> get(),
         ]);
     }
 
-    
+    // Show the Products
     public function listings()
     {
        
-        return view('listings', [
-            'users' => user::all()
-        ]);
+        return view('dashboard.listings');
     }
 
-    public function addUsers()
-    {
-        $users = User::count();
 
-        $widget = [
-            'users' => $users,
-            //...
-        ];
-
-        return view('addUser', [
-            'users' => user::all()
-        ]);
-    }
 
 }

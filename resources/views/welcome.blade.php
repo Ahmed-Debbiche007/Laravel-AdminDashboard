@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>E-commerce</title>
+        <title>My Company</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -69,7 +69,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/Dashboard') }}">Home</a>
+                        <a href="{{ url('/Dashboard') }}">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
