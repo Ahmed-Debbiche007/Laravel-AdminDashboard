@@ -24,7 +24,7 @@ Route::get('/', function () {
 });
 
 Route::get('/home', function () {
-    return view('welcome');
+    return redirect ('/Dashboard');
 });
 
 
