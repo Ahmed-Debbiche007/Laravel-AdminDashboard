@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 
 @section('main-content')
-<x-navbar>"Listings"</x-navbar>
+<x-navbar>"Clients"</x-navbar>
 <!-- Page Heading -->
 <div class="container-fluid">
-<h1 class="h3 mb-4 text-gray-800">{{ __('Listings') }}</h1>
+<h1 class="h3 mb-4 text-gray-800">{{ __('Clients') }}</h1>
 
 @if (session('success'))
 <div class="alert alert-success border-left-success alert-dismissible fade show" role="alert">
@@ -24,7 +24,7 @@
 <div class="row">
 
     <!-- Content Column -->
-   No Products Yet
+   No Clients Yet
 
 </div>
 

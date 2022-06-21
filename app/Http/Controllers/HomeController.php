@@ -26,7 +26,7 @@ class HomeController extends Controller
     {
         return view('dashboard.home', [
             'users' => user::latest()->filter(request(['search']))->paginate(10),
-            'allUsers' => user::latest() -> get(),
+            'allUsers' => user::latest() -> get() -> count(),
         ]);
     }
 
@@ -35,6 +35,12 @@ class HomeController extends Controller
     {
        
         return view('dashboard.listings');
+    }
+
+    public function clients()
+    {
+       
+        return view('dashboard.clients');
     }
 
 

@@ -1,7 +1,9 @@
 @extends('layouts.admin')
 
 @section('main-content')
+<x-navbar>"Dashboard"</x-navbar>
 <!-- Page Heading -->
+<div class="container-fluid">
 <h1 class="h3 mb-4 text-gray-800">Profile</h1>
 
 @if (session('success'))
@@ -198,5 +200,5 @@
 </form>
 @endif
 
-
+</div>
 @endsection

@@ -35,6 +35,8 @@ Auth::routes();
 Route::get('/Dashboard', [HomeController::class,'index'])->name('home');
 // Route to Products
 Route::get('/Listings', [HomeController::class,'listings'])->name('Listings');
+// Route to Clients
+Route::get('/Clients', [HomeController::class,'clients'])->name('Clients');
 
 
 //Routes to user management

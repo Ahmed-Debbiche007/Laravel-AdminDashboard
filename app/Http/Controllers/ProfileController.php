@@ -25,7 +25,8 @@ class ProfileController extends Controller
     public function addUsers()
     {
         return view('dashboard.addUser', [
-            'users' => user::all()
+            'users' => user::all(),
+            'allUsers' => user::latest() -> get() -> count(),
         ]);
     }
     

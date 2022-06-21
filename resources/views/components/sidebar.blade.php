@@ -14,7 +14,7 @@
         <!-- Nav Item - Dashboard -->
         <li class="nav-item {{ Nav::isRoute('home') }}">
             <a class="nav-link" href="/Dashboard">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
+            <i class="bi bi-speedometer2"></i>
                 <span>{{ __('Dashboard') }}</span></a>
         </li>
 
@@ -24,14 +24,17 @@
                 <span>Listings</span></a>
         </li>
 
-
-
+        <li class="nav-item {{ Nav::isRoute('Clients') }}">
+            <a class="nav-link" href="/Clients">
+            <i class="bi bi-person"></i>
+                <span>Clients</span></a>
+        </li>
 
 
         <!-- Nav Item - Profile -->
         <li class="nav-item {{ Nav::isRoute('profile') }}">
             <a class="nav-link" href="/profile/{{ Auth::user()->id }}">
-                <i class="fas fa-fw fa-user"></i>
+            <i class="bi bi-gear"></i>
                 <span>Profile</span>
             </a>
         </li>
