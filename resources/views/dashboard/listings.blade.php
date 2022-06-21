@@ -2,13 +2,28 @@
 
 @section('main-content')
 
-<x-heading/>
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">{{ __('Listings') }}</h1>
+
+@if (session('success'))
+<div class="alert alert-success border-left-success alert-dismissible fade show" role="alert">
+    {{ session('success') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
+
+@if (session('status'))
+<div class="alert alert-success border-left-success" role="alert">
+    {{ session('status') }}
+</div>
+@endif
 
 <div class="row">
 
-    <div class="font-weight-bold text-danger text-uppercase ">
-        <div class="col-xl-12 col-md-10 mb-10"> No Products Yet</div>
-    </div>
+    <!-- Content Column -->
+   No Products Yet
 
 </div>
 

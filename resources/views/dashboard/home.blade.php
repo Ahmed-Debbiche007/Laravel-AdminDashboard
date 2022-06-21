@@ -2,12 +2,38 @@
 
 @section('main-content')
 
-<x-heading/>
-<x-usersCount>{{$allUsers->count()}}</x-usersCount>
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">{{ __('Dashboard') }}</h1>
 
+@if (session('success'))
+<div class="alert alert-success border-left-success alert-dismissible fade show" role="alert">
+    {{ session('success') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
+
+@if (session('status'))
+<div class="alert alert-success border-left-success" role="alert">
+    {{ session('status') }}
+</div>
+@endif
+
+<x-userCard :users="$users">
+@if (Auth::user()->role == 'Admin')
+            <div>
+                <a class="btn btn-primary m-2" href="/add"><i class="bi bi-plus-circle"></i> Add Users</a>
+            </div>
+            @endif
+</x-userCard>
 <div class="row">
+
     <!-- Content Column -->
     <div class="col-lg-12 mb-4">
+
+
+
         <!-- Color System -->
         <div class="row">
             <div class="col-md-8 mb-4">
@@ -15,7 +41,6 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="table-responsive">
-                                @unless (count($users)==0)
                                 <table class="table text-start align-middle table-bordered table-hover mb-0">
                                     <thead>
                                         <tr class="text-dark">
@@ -49,7 +74,7 @@
                                     @else
                                     <tbody>
                                         @foreach ($users as $user)
-                                        @if($user->role == 'Guest')
+                                            @if($user->role == 'Guest')
                                         <tr>
                                             <td>{{$user->id}}</td>
                                             <td>{{$user->name}} {{$user->last_name}}</td>
@@ -71,9 +96,6 @@
                                     </tbody>
                                     @endif
                                 </table>
-                                @else
-                                <h1>No users Found</h1>
-                                @endif
                             </div>
                         </div>
                     </div>

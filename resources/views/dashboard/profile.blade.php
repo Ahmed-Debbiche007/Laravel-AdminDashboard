@@ -1,19 +1,41 @@
 @extends('layouts.admin')
 
 @section('main-content')
-<x-heading />
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">Profile</h1>
+
+@if (session('success'))
+<div class="alert alert-success border-left-success alert-dismissible fade show" role="alert">
+    {{ session('success') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
+
+@if ($errors->any())
+<div class="alert alert-danger border-left-danger " role="alert">
+    <ul class="pl-4 my-2">
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 
 <div class="row">
+
     <div class="col-lg-4 order-lg-2">
+
         <div class="card shadow mb-4">
             <div class="card-profile-image mt-4">
                 @if($users->role == 'Guest')
                 <figure class="rounded-circle avatar avatar font-weight-bold" style="font-size: 60px; height: 180px; width: 180px;" data-initial="{{ $users->name[0] . $users->last_name[0] }}"></figure>
-                @else
-                <figure class="rounded-circle avatar avatar font-weight-bold" style="font-size: 60px; height: 180px; width: 180px;" data-initial="{{ $users->name[0] }}"></figure>
+                @else<figure class="rounded-circle avatar avatar font-weight-bold" style="font-size: 60px; height: 180px; width: 180px;" data-initial="{{ $users->name[0] }}"></figure>
                 @endif
             </div>
             <div class="card-body">
+
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="text-center">
@@ -22,19 +44,28 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
+
     </div>
 
     <div class="col-lg-8 order-lg-1">
+
         <div class="card shadow mb-4">
+
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary"><i class="bi bi-gear"></i> Account Settings</h6>
             </div>
+
             <div class="card-body">
+
                 <form method="POST" action="/profile/{{$users->id}}" autocomplete="off" id="form">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                     <input type="hidden" name="_method" value="PUT">
+
+
                     <div class="pl-lg-4">
                         <div class="row">
                             <div class="col-lg-6">
@@ -86,6 +117,8 @@
 
                     </div>
 
+                    <!-- Button -->
+
                     <div class="pl-lg-4">
                         <div class="row">
                             <div class="col text-center">
@@ -94,10 +127,12 @@
                         </div>
                     </div>
                 </form>
+
+
             </div>
         </div>
         <div class="card shadow mb-4">
-            
+
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary"><i class="bi bi-shield-check"></i> Privacy Settings</h6>
             </div>
@@ -134,6 +169,8 @@
                         </div>
                     </div>
 
+                    <!-- Button -->
+
                     <div class="pl-lg-4">
                         <div class="row">
                             <div class="col text-center">
@@ -147,8 +184,10 @@
             </div>
         </div>
     </div>
-</div>
 
+
+
+</div>
 @if (Auth::user()->role == 'Admin')
 <form id="form" method="POST" action="/profile/{{$users->id}}">
     @csrf

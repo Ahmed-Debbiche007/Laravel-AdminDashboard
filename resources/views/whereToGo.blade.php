@@ -67,7 +67,7 @@
         <div class="flex-center position-ref full-height">
             
                 <div class="top-right links">  
-                <a href="{{ url('/') }}">Dashboard</a>                      
+                <a href="{{ url('/') }}">Home</a>                      
                     @guest
                     @if (Route::has('login'))
                         <a href="{{ route('login') }}">Login</a>

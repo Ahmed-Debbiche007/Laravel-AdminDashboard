@@ -2,7 +2,24 @@
 
 @section('main-content')
 
-<x-heading/>
+<!-- Page Heading -->
+<h1 class="h3 mb-4 text-gray-800">{{ __('Dashboard') }}</h1>
+
+@if (session('success'))
+<div class="alert alert-success border-left-success alert-dismissible fade show" role="alert">
+    {{ session('success') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+@endif
+
+@if (session('status'))
+<div class="alert alert-success border-left-success" role="alert">
+    {{ session('status') }}
+</div>
+@endif
+
 <div class="row">
 
     <div class="col-lg-6">
@@ -61,8 +78,10 @@
 
 
     </div>
+
+
 </div>
-<x-usersCount>{{$users->count()}}</x-usersCount>
+<x-userCard :users="$users"/>
 
 
 
