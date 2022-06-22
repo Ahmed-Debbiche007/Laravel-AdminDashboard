@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Client;
+use App\Models\Listing;
 use Illuminate\Support\Str;
 
 
@@ -30,6 +32,8 @@ class DatabaseSeeder extends Seeder
             );
 
         User::factory(10)->create();
+        Client::factory(10)->create();
+        Listing::factory(10)->create();
 
     }
 }

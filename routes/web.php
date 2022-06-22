@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ClientController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -55,6 +56,24 @@ Route::put('/profile/password/{user}', [ProfileController::class, 'updatePasswor
 Route::delete('/profile/{user}', [ProfileController::class, 'destroy']);
 // Route to the delete request from the dashboard
 Route::delete('/home/{user}', [ProfileController::class, 'destroy']);
+
+//Routes to clients management
+// Route to the admin's "add client" form
+Route::get('/addClient', [ClientController::class, 'addClients']);
+// Route to the admin's "add client" form add request
+Route::post('/addClient', [ClientController::class, 'store']);
+// Route to the edit client form 
+Route::get('/client/{client}', [ClientController::class, 'index'])->name('client');
+// Route to the "edit client" form update request
+Route::put('/client/{client}', [ClientController::class, 'update']);
+// Route to the "edit client's password" form update request
+Route::put('/client/password/{user}', [ClientController::class, 'updatePassword']);
+// These route is only accessible by admin
+// Route to the delete request from the "edit client" form 
+Route::delete('/client/{client}', [ClientController::class, 'destroy']);
+// Route to the delete request from the dashboard
+Route::delete('/home/{client}', [ClientController::class, 'destroy']);
+
 
 // Route to a random page
 Route::get('/{whereToGo}', function ($whereToGo) {

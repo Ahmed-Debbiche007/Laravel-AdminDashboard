@@ -56,7 +56,8 @@ class ProfileController extends Controller
         $user->name = $request->input('name');
         $user->last_name = $request->input('last_name');
         $user->email = $request->input('email');
-        $user->role = $request->input('role');
+        if ($user->role !="Client"){$user->role = $request->input('role');}
+        
         $user->update();
 
         return redirect()->route('home')->withSuccess('Profile updated successfully.');

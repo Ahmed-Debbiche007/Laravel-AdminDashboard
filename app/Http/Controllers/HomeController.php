@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Client;
+use App\Models\Listing;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -34,13 +36,19 @@ class HomeController extends Controller
     public function listings()
     {
        
-        return view('dashboard.listings');
+        return view('dashboard.listings',[
+            'listings' => Listing::latest()->paginate(10),
+            'allListings' => Listing::latest() -> get() -> count(),
+        ]);
     }
 
     public function clients()
     {
        
-        return view('dashboard.clients');
+        return view('dashboard.clients',[
+            'clients' => Client::latest()->paginate(10),
+            'allClients' => Client::latest() -> get() -> count(),
+        ] );
     }
 
 

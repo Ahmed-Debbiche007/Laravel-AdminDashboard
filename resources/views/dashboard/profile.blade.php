@@ -92,6 +92,7 @@
                                 </div>
                             </div>
                         </div>
+                        @if ($users->role != "Client")
                         <div class="row">
 
                             <div class="col-lg-12">
@@ -116,6 +117,8 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        @endif
 
                     </div>
 
