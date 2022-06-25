@@ -19,6 +19,8 @@ class CreateListingsTable extends Migration
             $table->longText('description');
             $table->string('tags');
             $table->string('photo');
+            $table->float('price');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }

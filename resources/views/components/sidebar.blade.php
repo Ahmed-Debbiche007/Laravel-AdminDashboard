@@ -30,7 +30,7 @@
                 <span>Clients</span></a>
         </li>
 
-
+@auth
         <!-- Nav Item - Profile -->
         <li class="nav-item {{ Nav::isRoute('profile') }}">
             <a class="nav-link" href="/profile/{{ Auth::user()->id }}">
@@ -38,7 +38,7 @@
                 <span>Profile</span>
             </a>
         </li>
-
+@endauth
         <!-- Nav Item - About -->
 
 

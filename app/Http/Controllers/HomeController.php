@@ -27,8 +27,8 @@ class HomeController extends Controller
     public function index()
     {
         return view('dashboard.home', [
-            'users' => user::latest()->filter(request(['search']))->paginate(10),
-            'allUsers' => user::latest() -> get() -> count(),
+            'users' => user::where('role','not like','Client')->filter(request(['search']))->paginate(10),
+            'allUsers' => user::where('role','not like','Client')->count(),
         ]);
     }
 
@@ -37,7 +37,7 @@ class HomeController extends Controller
     {
        
         return view('dashboard.listings',[
-            'listings' => Listing::latest()->paginate(10),
+            'listings' => Listing::latest()->filter(request(['search']))->paginate(8),
             'allListings' => Listing::latest() -> get() -> count(),
         ]);
     }
@@ -46,11 +46,13 @@ class HomeController extends Controller
     {
        
         return view('dashboard.clients',[
-            'clients' => Client::latest()->paginate(10),
-            'allClients' => Client::latest() -> get() -> count(),
+            'clients' => user::latest()->where('role','like','Client')->filter(request(['search']))->paginate(10),
+            'allClients' =>  user::latest()->where('role','like','Client')-> get() -> count(),
         ] );
     }
 
+    
+    
 
 
 }

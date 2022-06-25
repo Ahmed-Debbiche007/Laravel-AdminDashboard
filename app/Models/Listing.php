@@ -9,6 +9,21 @@ class Listing extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name', 'description', 'tags', 'photo', 
+        'name', 'description', 'tags', 'photo', 'price','quantity',
     ];
+
+    public function scopeFilter ($query, array $filters){
+        if ($filters['search']??false){
+            $query->Where ('name','like', '%'.request('search').'%')
+        ->orWhere ('tags','like', '%'.request('search').'%')
+        ->orWhere ('description','like', '%'.request('search').'%')
+        ;
+        }
+
+        if ($filters['tag']??false){
+            $query->Where ('tags','like', '%'.request('tag').'%')
+        ;
+        }
+    }
+
 }

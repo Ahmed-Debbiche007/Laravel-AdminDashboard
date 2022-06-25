@@ -63,22 +63,36 @@
                 margin-bottom: 30px;
             }
         </style>
+          <link href="{{ asset('css/sb-admin-2.min.css') }}" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://unpkg.com/bootstrap-show-password@1.2.1/dist/bootstrap-show-password.min.js"></script>
+  <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
+            
                 <div class="top-right links">
+                <a href="{{ url('/') }}">Home</a>
+                <a href="{{ url('/Products') }}">Products</a>
                     @auth
+                    @if (Auth::user()->role != 'Client')
                         <a href="{{ url('/Dashboard') }}">Dashboard</a>
+                        @else <a href="{{ url('/Cart') }}">Cart <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span></a>
+                        @endif
+                        <a class="btn" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
                     @else
+                    @if (Route::has('login'))
                         <a href="{{ route('login') }}">Login</a>
-
+                        @endif
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
                         @endif
                     @endauth
                 </div>
-            @endif
+           
 
             <div class="content">
                 <div class="title m-b-md">

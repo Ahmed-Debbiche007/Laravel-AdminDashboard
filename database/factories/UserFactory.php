@@ -16,6 +16,7 @@ class UserFactory extends Factory
     {
         $fullName = $this->faker->name();
         $pieces = explode(' ', $fullName);
+        $rand = rand(0,1);
         return [
             'name' => $pieces[0],
             'last_name' => $pieces[1],
@@ -23,7 +24,8 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => bcrypt($pieces[0]), // password
             'remember_token' => Str::random(10),
-            'role'=> 'Guest'
+            'role'=> ($rand == 1)? 'Guest' : 'Client',
+            'is_admin'=> $rand ,
         ];
     }
 

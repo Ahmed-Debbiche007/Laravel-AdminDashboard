@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 
 @section('main-content')
-<x-navbar>"Products"</x-navbar>
+<x-navbar action="Listings" />
 <!-- Page Heading -->
 <div class="container-fluid">
-    <h1 class="h3 mb-4 text-gray-800">Products</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ __('Listings') }}</h1>
 
     @if (session('success'))
     <div class="alert alert-success border-left-success alert-dismissible fade show" role="alert">
@@ -21,73 +21,56 @@
     </div>
     @endif
 
+    @if (($allListings !=0))
+
     <x-userCard :users="$allListings">
-       
+
         <div>
-            <a class="btn btn-primary m-2" href="/addClient"><i class="bi bi-plus-circle"></i> Add Client</a>
+            <a class="btn btn-primary m-2" href="/addListing"><i class="bi bi-plus-circle"></i> Add Listings</a>
         </div>
-        
+
     </x-userCard>
+
+    <div class="row">
+        @foreach ($listings as $listing)
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primairy shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="card-profile-image mt-4">
+                                <a href="/Listing/{{$listing->id}}">
+                                    <img style="height: 180px; border-radius: 50%;" src="img/image.jpg" alt="">
+                                </a>
+                            </div>
+                            <a href="/Listing/{{$listing->id}}">
+                                <div class="h6 mb-0 font-weight-bold text-gray-800 pb-2 pt-3">{{$listing->name}}</div>
+                            </a>
+                            <div class="h6 mb-0 font-weight-bold text-gray-800 pb-2 pt-3">{{$listing->price}} TND</div>
+                            <div class="h6 mb-0 font-weight-bold text-gray-800 pb-2 pt-3">Qte: {{$listing->quantity}} </div>
+                            <x-listingTag :tagsCsv="$listing->tags" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        @endforeach
+
+        
+    </div>
+    {{$listings->links()}}
+
+    @else
+
     <div class="row">
 
         <!-- Content Column -->
-        <div class="col-lg-12 mb-4">
+        No Products Yet
 
-
-
-            <!-- Color System -->
-            <div class="row">
-                <div class="col-md-8 mb-4">
-                    <div class="card  shadow h-100 py-2">
-                        <div class="card-body">
-                            <div class="row no-gutters align-items-center">
-                                <div class="table-responsive">
-                                    <table class="table text-start align-middle table-bordered table-hover mb-0">
-                                        <thead>
-                                            <tr class="text-dark">
-                                                <th scope="col">ID</th>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Mail</th>
-                                               
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($clients as $client)
-                                            <tr>
-                                                <td>{{$client->id}}</td>
-                                                <td>{{$client->name}} {{$client->last_name}}</td>
-                                                <td>{{$client->email}}</td>
-                                               
-                                                @if (Auth::user()->role == 'Admin')
-                                                <form id="form" method="POST" action="/client/{{$client->id}}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <td>
-                                                        <a class="btn btn-primary m-2" href="/client/{{$client->id}}"><i class="bi bi-pencil"></i>Edit</a>
-                                                        <button class="btn btn-danger m-2" type="submit"><i class="bi bi-trash"></i>Delete</button>
-                                                    <td>
-                                                </form>
-                                                @endif
-                                            </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            {{$clients->links()}}
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
     </div>
-
-</div>
-
+    @endif
 </div>
 
 @endsection

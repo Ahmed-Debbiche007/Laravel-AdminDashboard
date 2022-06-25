@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('main-content')
-<x-navbar>"Dashboard"</x-navbar>
+<x-navbar action="Dashboard" >
 <!-- Page Heading -->
 <div class="container-fluid">
     <h1 class="h3 mb-4 text-gray-800">Add User</h1>
@@ -29,17 +29,7 @@
 
                     <div class="col-lg-12">
 
-                        @if ($errors->any())
-                        <div class="alert alert-danger border-left-danger" role="alert">
-                            <ul class="pl-4 my-2">
-                                @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endif
-
-                        <form method="POST" action="/add" class="user">
+                        <form method="POST" action="/add" class="user" enctype="multipart/form-data">
                         
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -57,6 +47,12 @@
                             <label class="form-control-label" for="email">Email</label>
                                 <input type="email" class="form-control form-control-user" name="email" placeholder="{{ __('E-Mail Address') }}" value="{{ old('email') }}" required>
                             </div>
+
+                            <div class="form-group">
+                            <label class="form-control-label" for="photo">Photo</label><br>
+                            <input type="file" name="photo" />
+                            </div>
+
                             <div class="form-group">
                                 <label class="form-control-label" for="role">Role</label>
                                 <br>
@@ -95,8 +91,8 @@
             </div>
         </div>
     </div>
-    <x-userCard :users="$allUsers" />
-
+   
+@endif
 </div>
 
 @endsection

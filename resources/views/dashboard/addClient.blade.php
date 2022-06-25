@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 
 @section('main-content')
-<x-navbar>"Dashboard"</x-navbar>
+<x-navbar action="Clients" />
 <!-- Page Heading -->
 <div class="container-fluid">
-    <h1 class="h3 mb-4 text-gray-800">Add User</h1>
+    <h1 class="h3 mb-4 text-gray-800">Add Client</h1>
 
     @if (session('success'))
     <div class="alert alert-success border-left-success alert-dismissible fade show" role="alert">
@@ -84,7 +84,7 @@
             </div>
         </div>
     </div>
-    <x-userCard :users="$allclients" />
+
 
 </div>
 

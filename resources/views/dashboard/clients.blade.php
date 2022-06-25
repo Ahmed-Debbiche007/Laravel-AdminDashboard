@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('main-content')
-<x-navbar>"Clients"</x-navbar>
+<x-navbar action="Clients" />
 <!-- Page Heading -->
 <div class="container-fluid">
     <h1 class="h3 mb-4 text-gray-800">Clients</h1>
@@ -46,6 +46,7 @@
                                         <thead>
                                             <tr class="text-dark">
                                                 <th scope="col">ID</th>
+                                                <th scope="col">Photo</th>
                                                 <th scope="col">Name</th>
                                                 <th scope="col">Mail</th>
                                                
@@ -55,6 +56,7 @@
                                             @foreach ($clients as $client)
                                             <tr>
                                                 <td>{{$client->id}}</td>
+                                                <td> <img style="height: 40px; border-radius: 50%;" src="https://st2.depositphotos.com/2619903/6028/v/600/depositphotos_60287149-stock-illustration-no-image-signs-for-web.jpg" alt=""></td>
                                                 <td>{{$client->name}} {{$client->last_name}}</td>
                                                 <td>{{$client->email}}</td>
                                                

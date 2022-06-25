@@ -25,8 +25,8 @@ class ProfileController extends Controller
     public function addUsers()
     {
         return view('dashboard.addUser', [
-            'users' => user::all(),
-            'allUsers' => user::latest() -> get() -> count(),
+            'users' => user::where('role','not like','Client'),
+            'allUsers' => user::where('role','not like','Client')->count(),
         ]);
     }
     
@@ -39,6 +39,13 @@ class ProfileController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'role' => 'required'
         ]);
+        $formFields['is_admin']=1;
+        if ($request->hasFile('photo')){
+            $file = $request ->file ('photo');
+            $filename= date('YmdHi').$file->getClientOriginalName();
+            $file-> move(public_path('public/Image'), $filename);
+            $formFields['photo']= $filename;
+        }
 
         User::create($formFields);
 
@@ -57,7 +64,7 @@ class ProfileController extends Controller
         $user->last_name = $request->input('last_name');
         $user->email = $request->input('email');
         if ($user->role !="Client"){$user->role = $request->input('role');}
-        
+        $user->is_admin =1;
         $user->update();
 
         return redirect()->route('home')->withSuccess('Profile updated successfully.');

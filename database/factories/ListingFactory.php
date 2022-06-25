@@ -19,6 +19,8 @@ class ListingFactory extends Factory
             'description' => $this->faker->paragraph(6, true),
             'tags' => "tags, to, product",
             'photo' => "Null",
+            'price' => rand(10, 100),
+            'quantity' => rand(0, 100),
         ];
 
     }

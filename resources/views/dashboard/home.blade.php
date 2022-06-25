@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('main-content')
-<x-navbar>"Dashboard"</x-navbar>
+<x-navbar action="Dashboard" />
 <!-- Page Heading -->
 <div class="container-fluid">
     <h1 class="h3 mb-4 text-gray-800">{{ __('Dashboard') }}</h1>
@@ -46,6 +46,7 @@
                                         <thead>
                                             <tr class="text-dark">
                                                 <th scope="col">ID</th>
+                                                <th scope="col">Photo</th>
                                                 <th scope="col">Name</th>
                                                 <th scope="col">Mail</th>
                                                 <th scope="col">Role</th>
@@ -56,6 +57,7 @@
                                             @foreach ($users as $user)
                                             <tr>
                                                 <td>{{$user->id}}</td>
+                                                <td> <img style="height: 45px; border-radius: 50%;" src="https://st2.depositphotos.com/2619903/6028/v/600/depositphotos_60287149-stock-illustration-no-image-signs-for-web.jpg" alt=""></td>
                                                 <td>{{$user->name}} {{$user->last_name}}</td>
                                                 <td>{{$user->email}}</td>
                                                 <td>{{$user->role}}</td>
