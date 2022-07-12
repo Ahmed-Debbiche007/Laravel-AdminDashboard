@@ -87,6 +87,24 @@
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="form-group">
+                                    <label class="form-control-label" for="address">Address<span class="small text-danger">*</span></label>
+                                    <input type="address" id="address" class="form-control" name="address"  value="{{ $users->address }}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="tel">Phone Number<span class="small text-danger">*</span></label>
+                                    <input type="tel" id="tel" class="form-control" name="tel" placeholder="example@example.com" value="{{ $users->tel }}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
                                     <label class="form-control-label" for="email">Email address<span class="small text-danger">*</span></label>
                                     <input type="email" id="email" class="form-control" name="email" placeholder="example@example.com" value="{{ $users->email }}">
                                 </div>

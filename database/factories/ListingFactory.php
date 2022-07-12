@@ -21,6 +21,7 @@ class ListingFactory extends Factory
             'photo' => "Null",
             'price' => rand(10, 100),
             'quantity' => rand(0, 100),
+            'tva' => rand(7, 20),
         ];
 
     }

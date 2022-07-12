@@ -44,10 +44,11 @@
                                 </a>
                             </div>
                             <a href="/Listing/{{$listing->id}}">
-                                <div class="h6 mb-0 font-weight-bold text-gray-800 pb-2 pt-3">{{$listing->name}}</div>
+                                <div class="h4 mb-0 font-weight-bold text-gray-800 pb-2 pt-3">{{$listing->name}}</div>
                             </a>
-                            <div class="h6 mb-0 font-weight-bold text-gray-800 pb-2 pt-3">{{$listing->price}} TND</div>
-                            <div class="h6 mb-0 font-weight-bold text-gray-800 pb-2 pt-3">Qte: {{$listing->quantity}} </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800 pb-2 pt-3">{{$listing->price}} TND</div>
+                            <div class="h6 mb-0 text-gray-800 ">TVA: {{$listing->tva}}</div>
+                            <div class="h6 mb-0 text-gray-800 ">Qte: {{$listing->quantity}} </div>
                             <x-listingTag :tagsCsv="$listing->tags" />
                         </div>
                     </div>

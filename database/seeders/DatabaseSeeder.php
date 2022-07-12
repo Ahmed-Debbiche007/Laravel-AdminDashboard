@@ -8,6 +8,7 @@ use App\Models\Listing;
 use Illuminate\Support\Str;
 
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -17,22 +18,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-       
+
         \DB::table('users')->insert(
             [
                 'name' => 'Admin',
                 'last_name' => 'istrator',
+                'address' => 'At the company, Dummy!',
+                'tel' => '+216 XX XXX XXX',
                 'email' => 'admin@admin.com',
                 'email_verified_at' => now(),
                 'password' => bcrypt('secret'),
                 'remember_token' => Str::random(10),
-                'role'=> 'Admin',
-                'is_admin'=> 1,
+                'role' => 'Admin',
+                'is_admin' => 1,
             ]
-            );
+        );
 
         User::factory(21)->create();
         Listing::factory(15)->create();
-
     }
 }

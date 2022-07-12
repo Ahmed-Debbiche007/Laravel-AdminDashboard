@@ -74,26 +74,7 @@
 <body>
   <div class="flex-center position-ref full-height">
 
-    <div class="top-right links">
-      <a href="{{ url('/') }}">Home</a>
-      <a href="{{ url('/Products') }}">Products</a>
-      @auth
-      @if (Auth::user()->role != 'Client')
-      <a href="{{ url('/Dashboard') }}">Dashboard</a>
-      @endif
-      <a class="btn" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        @csrf
-      </form>
-      @else
-      @if (Route::has('login'))
-      <a href="{{ route('login') }}">Login</a>
-      @endif
-      @if (Route::has('register'))
-      <a href="{{ route('register') }}">Register</a>
-      @endif
-      @endauth
-    </div>
+  <x-navb/>
   </div>
 
   <div class="content">
@@ -143,7 +124,7 @@
           <div class="row">
               <div class="col-lg-12">
                   <div class="text-center">
-                     <button class="btn btn-primary m-2">Buy Service</button>
+                     <a href="/add-to-cart/{{$listings->id}}"><button class="btn btn-primary m-2">Buy Service</button></a>
                   </div>
               </div>
           </div>

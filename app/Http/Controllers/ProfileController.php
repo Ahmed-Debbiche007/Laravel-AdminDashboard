@@ -35,6 +35,8 @@ class ProfileController extends Controller
         $formFields= $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string'],
+            'tel' => ['required', 'string'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'role' => 'required'
@@ -58,10 +60,14 @@ class ProfileController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'last_name' => 'nullable|string|max:255',
+            'address' => ['required', 'string'],
+            'tel' => ['required', 'string'],
             'email' => 'required|string|email|max:255',
         ]);
         $user->name = $request->input('name');
         $user->last_name = $request->input('last_name');
+        $user->tel = $request->input('tel');
+        $user->email = $request->input('email');
         $user->email = $request->input('email');
         if ($user->role !="Client"){$user->role = $request->input('role');}
         $user->is_admin =1;

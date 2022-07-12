@@ -28,6 +28,8 @@ class ClientController extends Controller
         $formFields= $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string'],
+            'tel' => ['required', 'string'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -45,10 +47,14 @@ class ClientController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'last_name' => 'nullable|string|max:255',
+            'address' => ['required', 'string'],
+            'tel' => ['required', 'string'],
             'email' => 'required|string|email|max:255',
         ]);
         $client->name = $request->input('name');
         $client->last_name = $request->input('last_name');
+        $client->address = $request->input('address');
+        $client->tel = $request->input('tel');
         $client->email = $request->input('email');
         $client->role ="Client";
         $client->is_admin =0;

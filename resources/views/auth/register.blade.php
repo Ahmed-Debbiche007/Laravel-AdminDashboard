@@ -35,6 +35,14 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <input type="address" class="form-control form-control-user" name="address" placeholder="{{ __('Address') }}" value="{{ old('address') }}" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="tel" class="form-control form-control-user" name="tel" placeholder="{{ __('Phone Number') }}" value="{{ old('tel') }}" required>
+                                    </div>
+
+                                    <div class="form-group">
                                         <input type="email" class="form-control form-control-user" name="email" placeholder="{{ __('E-Mail Address') }}" value="{{ old('email') }}" required>
                                     </div>
 

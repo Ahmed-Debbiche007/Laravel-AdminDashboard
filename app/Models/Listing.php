@@ -9,7 +9,7 @@ class Listing extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name', 'description', 'tags', 'photo', 'price','quantity',
+        'name', 'description', 'tags', 'photo', 'price','quantity', 'tva',
     ];
 
     public function scopeFilter ($query, array $filters){

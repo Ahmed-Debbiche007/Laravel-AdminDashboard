@@ -21,6 +21,7 @@ class CreateListingsTable extends Migration
             $table->string('photo');
             $table->float('price');
             $table->integer('quantity');
+            $table->float('tva');
             $table->timestamps();
         });
     }

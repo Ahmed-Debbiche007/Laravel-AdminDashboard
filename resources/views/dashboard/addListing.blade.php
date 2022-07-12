@@ -59,6 +59,11 @@
                             </div>
 
                             <div class="form-group">
+                            <label class="form-control-label" for="tva">TVA</label>
+                                <input type="number" step="1" class="form-control form-control-user" name="tva" placeholder="{{ __('0') }}" value="{{ old('tva') }}" required>
+                            </div>
+
+                            <div class="form-group">
                             <label class="form-control-label" for="quantity">Quantity</label>
                                 <input type="number" step="1" class="form-control form-control-user" name="quantity" placeholder="{{ __('0') }}" value="{{ old('quantity') }}" required>
                             </div>

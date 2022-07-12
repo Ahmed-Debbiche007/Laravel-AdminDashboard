@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Client;
 use App\Models\Listing;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -48,6 +49,15 @@ class HomeController extends Controller
         return view('dashboard.clients',[
             'clients' => user::latest()->where('role','like','Client')->filter(request(['search']))->paginate(10),
             'allClients' =>  user::latest()->where('role','like','Client')-> get() -> count(),
+        ] );
+    }
+
+    public function invoices()
+    {
+       
+        return view('invoice.index',[
+            'invoices' => invoice::latest()->filter(request(['search']))->paginate(10),
+            'allInvoices' =>  invoice::latest()->get() -> count(),
         ] );
     }
 

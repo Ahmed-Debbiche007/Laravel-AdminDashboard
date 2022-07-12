@@ -44,6 +44,16 @@
                             </div>
 
                             <div class="form-group">
+                            <label class="form-control-label" for="address">Address</label>
+                                <input type="text" class="form-control form-control-user" name="address" placeholder="{{ __('Address') }}" value="{{ old('address') }}" required>
+                            </div>
+
+                            <div class="form-group">
+                            <label class="form-control-label" for="tel">Phone Number</label>
+                                <input type="text" class="form-control form-control-user" name="tel" placeholder="{{ __('Phone Number') }}" value="{{ old('tel') }}" required>
+                            </div>
+
+                            <div class="form-group">
                             <label class="form-control-label" for="email">Email</label>
                                 <input type="email" class="form-control form-control-user" name="email" placeholder="{{ __('E-Mail Address') }}" value="{{ old('email') }}" required>
                             </div>

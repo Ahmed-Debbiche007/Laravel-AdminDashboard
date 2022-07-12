@@ -60,13 +60,15 @@
                             <label class="form-control-label" for="price">Price</label>
                                 <input type="number" step="0.01" class="form-control form-control-user" name="price" placeholder="{{ __('0.00') }}" value="{{ $listings->price }}" required>
                             </div>
-
+                            <label class="form-control-label" for="tva">TVA</label>
+                                <input type="number" step="0.1" class="form-control form-control-user" name="tva" placeholder="{{ __('0') }}" value="{{ $listings->tva }}" required>
+                            
                             <label class="form-control-label" for="quantity">Quantity</label>
                                 <input type="number" step="1" class="form-control form-control-user" name="quantity" placeholder="{{ __('0') }}" value="{{ $listings->quantity }}" required>
                             </div>
                             <div class="form-group">
                             <label class="form-control-label" for="description">Description</label>
-                               <textarea name="description" class="form-control form-control-user" id="description" cols="30" rows="10" style="border-radius: 20px;"  placeholder="{{ $listings->description }}" value="{{ $listings->description }}">{{ $listings->description }}</textarea>
+                               <textarea name="description" class="form-control form-control-user" id="description" cols="30" rows="5" style="border-radius: 20px;"  placeholder="{{ $listings->description }}" value="{{ $listings->description }}">{{ $listings->description }}</textarea>
                             </div>
 
                             
@@ -86,18 +88,20 @@
 
                 </div>
             </div>
-        </div>
-    </div>
-    
-
-</div>
-
-<form id="form" method="POST" action="/Listing/{{$listings->id}}">
+            <form id="form" method="POST" action="/Listing/{{$listings->id}}">
     @csrf
     @method('DELETE')
     <td>
         <button class="btn btn-danger m-2" type="submit"><i class="bi bi-trash"></i> Delete Listing</button>
     <td>
 </form>
+        </div>
+        
+    </div>
+    
+
+</div>
+
+
 
 @endsection

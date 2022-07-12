@@ -30,6 +30,12 @@
                 <span>Clients</span></a>
         </li>
 
+        <li class="nav-item {{ Nav::isRoute('Invoices') }}">
+            <a class="nav-link" href="/Invoices">
+            <i class="bi bi-receipt"></i>
+                <span>Invoices</span></a>
+        </li>
+
 @auth
         <!-- Nav Item - Profile -->
         <li class="nav-item {{ Nav::isRoute('profile') }}">

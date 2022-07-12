@@ -20,6 +20,8 @@ class UserFactory extends Factory
         return [
             'name' => $pieces[0],
             'last_name' => $pieces[1],
+            'address' => $this->faker->name(),
+            'tel' => $this->faker->numerify('## ### ###'),
             'email' => $pieces[0].'.'.$pieces[1].'@example.com',
             'email_verified_at' => now(),
             'password' => bcrypt($pieces[0]), // password
