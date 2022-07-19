@@ -15,11 +15,13 @@ class CreateInvoiceTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('client_id')->default('3');
+            $table->unsignedBigInteger('client_id')->default('0');
             $table->foreign('client_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->float('timbreFiscal');
             $table->float('tht')->nullable();
             $table->float('ttc')->nullable();
+            $table->float('tva')->nullable();
+            $table->float('gqte')->nullable();
             $table->timestamps();
         });
     }

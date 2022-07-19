@@ -21,7 +21,7 @@
         {{ session('status') }}
     </div>
     @endif
-    <form method="POST" action="/addInvoice" class="user" target ="_blank">
+    <form method="POST" action="/addInvoice" class="user" >
         <div class="row" id="row">
             <div class="col-xl-4 col-md-4 mb-4" style="max-height: 500px ;" id="card">
                 <div class="card border-left-primairy shadow h-100 py-2">

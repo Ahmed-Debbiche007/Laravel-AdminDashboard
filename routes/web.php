@@ -110,7 +110,13 @@ Route::get('/generate-pdf', [CartController::class, 'getPDF'])->middleware('auth
 
 Route::get('/addInvoice', [InvoiceController::class, 'addInvoice'])->middleware('auth')->middleware('is_admin')->middleware('auth');
 Route::post('/addInvoice', [InvoiceController::class, 'store'])->middleware('auth')->middleware('is_admin')->middleware('auth');
-Route::get('/invoice/{invoice}', [InvoiceController::class, 'index'])->name('invoice')->middleware('auth')->middleware('is_admin');
+Route::get('/Invoice/{invoice}', [InvoiceController::class, 'index'])->name('invoice')->middleware('auth')->middleware('is_admin');
+Route::get('/Invoice/edit/{invoice}', [InvoiceController::class, 'edit'])->name('invoice')->middleware('auth')->middleware('is_admin');
+Route::put('/Invoice/{invoice}', [InvoiceController::class, 'update'])->middleware('auth')->middleware('is_admin');
+Route::delete('/invoice/{invoice}', [InvoiceController::class, 'destroy'])->middleware('auth')->middleware('is_admin');
+Route::post('/getPdf/{invoice}', [InvoiceController::class, 'getPDF'])->middleware('auth')->middleware('is_admin');
+
+
 
 // Route to a random page
 Route::get('/{whereToGo}', function ($whereToGo) {

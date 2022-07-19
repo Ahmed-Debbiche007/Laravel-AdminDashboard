@@ -9,7 +9,7 @@ class Invoice extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'client_id','timbreFiscal','tht','ttc',
+        'client_id','timbreFiscal','tht','ttc','gqte','tva',
     ];
     public function scopeFilter ($query, array $filters){
         if ($filters['search']??false){

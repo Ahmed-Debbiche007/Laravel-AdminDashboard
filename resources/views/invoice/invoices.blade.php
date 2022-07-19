@@ -4,8 +4,6 @@
 <x-navbar action="invoices" />
 <!-- Page Heading -->
 <div class="container-fluid">
-    <h1 class="h3 mb-4 text-gray-800">{{ __('invoices') }}</h1>
-
     @if (session('success'))
     <div class="alert alert-success border-left-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
@@ -21,57 +19,82 @@
     </div>
     @endif
 
-    @if (($allInvoices !=0))
-
-    <x-userCard :users="$allInvoices">
-
-        <div>
-            <a class="btn btn-primary m-2" href="/addInvoice"><i class="bi bi-plus-circle"></i> Add Invoice</a>
-        </div>
-
-    </x-userCard>
-
     <div class="row">
-        @foreach ($invoices as $invoice)
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primairy shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="card-profile-image mt-4">
-                                <a href="/invoice/{{$invoice->id}}">
-                                    <img style="height: 180px; border-radius: 50%;" src="img/image.jpg" alt="">
-                                </a>
-                            </div>
-                            <a href="/invoice/{{$invoice->id}}">
-                                <div class="h4 mb-0 font-weight-bold text-gray-800 pb-2 pt-3">{{$invoice->name}}</div>
-                            </a>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800 pb-2 pt-3">{{$invoice->price}} TND</div>
-                            <div class="h6 mb-0 text-gray-800 ">TVA: {{$invoice->tva}}</div>
-                            <div class="h6 mb-0 text-gray-800 ">Qte: {{$invoice->quantity}} </div>
-                            <x-invoiceTag :tagsCsv="$invoice->tags" />
+                            @php
+                            $date=date('d/m/Y', strtotime($invoices->created_at));
+                            @endphp
+
+                            <div class="h5 mb-0 font-weight-bold text-gray-800 pb-2 pt-3">Client: {{$client->name}} {{$client->last_name}}</div>
+                            <div class="h6 mb-0 text-gray-800 "><strong>Invoice Number: </strong> {{$invoices->id}}</div>
+                            <div class="h6 mb-0 text-gray-800 "><strong>Date:</strong> {{$date}}</div>
+                            <div class="h6 mb-0 text-gray-800 "><strong>Total Quantity:</strong> {{$invoices->gqte}} </div>
+                            <div class="h6 mb-0 text-gray-800 "><strong>Timbre Fiscal:</strong> {{$invoices->timbreFiscal}} </div>
+                            <div class="h6 mb-0 text-gray-800 "><strong>Total Net: </strong>{{$invoices->tht}} </div>
+                            <div class="h6 mb-0 text-gray-800 "><strong>TVA:</strong> {{$invoices->tva}} </div>
+                            <div class="h6 mb-0 text-gray-800 "><strong>Total TTC: </strong>{{$invoices->ttc}} </div>
+
                         </div>
                     </div>
 
                 </div>
             </div>
         </div>
-
-        @endforeach
-
-        
     </div>
-    {{$invoices->links()}}
-
-    @else
 
     <div class="row">
+        <div class="col-md-8 mb-4">
+            <div class="card  shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="table-responsive">
+                            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                                <thead>
+                                    <tr class="text-dark">
+                                        <th scope="col">Listing</th>
+                                        <th scope="col">Unit Price</th>
+                                        <th scope="col">TVA</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Discount</th>
 
-        <!-- Content Column -->
-        No Products Yet
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($listings as $listing)
+                                    <tr>
+                                        <td>{{$listing->name}}</td>
+                                        <td>{{$listing->price}}</td>
+                                        <td>{{$listing->tva}}%</td>
+                                        <td>{{$listing->quantity}}</td>
+                                        <td>{{$listing->discount}}%</td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <form id="form" method="POST" action="/getPdf/{{$invoices->id}}" target="_blank">
+                @csrf
+                    <button class="btn btn-warning m-2" type="submit"> <i class="bi bi-receipt"></i>Get PDF</button>
+                </form>
+                <form id="form" method="POST" action="/invoice/{{$invoices->id}}">
+                    @csrf
+                    @method('DELETE')
+                    <a class="btn btn-primary m-2" href="/Invoice/edit/{{$invoices->id}}"><i class="bi bi-pencil"></i> Edit</a>
+                    <button class="btn btn-danger m-2" type="submit"><i class="bi bi-trash"></i>Delete</button>
+                </form>
+            </div>
+
+        </div>
 
     </div>
-    @endif
+
 </div>
 
 @endsection
