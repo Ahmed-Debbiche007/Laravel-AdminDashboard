@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Client;
-use App\Models\Listing;
+
 use App\Models\Invoice;
+use App\Models\Listing;
+use App\Models\Quote;
+use App\Models\Statement;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -55,14 +57,28 @@ class HomeController extends Controller
     public function invoices()
     {
        
-        return view('invoice.index',[
-            'invoices' => invoice::latest()->filter(request(['search']))->paginate(10),
-            'allInvoices' =>  invoice::latest()->get() -> count(),
+        return view('statement.index',[
+            'statements' =>Statement::join('invoices', 'statements.id','=','invoices.statement_id')->filter(request(['search']))->paginate(10),
+            'allStatements' =>  Invoice::latest()->get() -> count(),
+            'type' => 'Invoice',
         ] );
     }
 
+    public function quotes()
+    {
+       
+        return view('statement.index',[
+            'statements' =>Statement::join('quotes', 'statements.id','=','quotes.statement_id')->filter(request(['search']))->paginate(10),
+            'allStatements' =>  Quote::latest()->get() -> count(),
+            'type' => 'Quote',
+        ] );
+    }
+
+ 
+
     
-    
+    //$invoices = Statement::join('invoices', 'statements.id','=','invoices.statement_id')->get(['statements.*','invoices.id']) ;
+    // $quotes = Statement::join('quotes', 'statements.id','=','quotes.statement_id')->get(['statements.*','quotes.id']) ;
 
 
 }

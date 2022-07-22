@@ -9,11 +9,6 @@ class Invoice extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'client_id','timbreFiscal','tht','ttc','gqte','tva',
+        'statement_id',
     ];
-    public function scopeFilter ($query, array $filters){
-        if ($filters['search']??false){
-            $query->Where ('id','like', '%'.request('search').'%')  ;
-        }
-    }
 }

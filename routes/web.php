@@ -5,14 +5,13 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\StatementController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\QuoteController;
 use Illuminate\Support\Facades\Route;
 
 
 use Illuminate\Support\Facades\Auth;
-use App\Models\Listing;
-use Illuminate\Http\Request;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +44,7 @@ Route::get('/Listings', [HomeController::class,'listings'])->name('Listings')->m
 Route::get('/Clients', [HomeController::class,'clients'])->name('Clients')->middleware('auth')->middleware('is_admin');
 // Route to Invoices
 Route::get('/Invoices', [HomeController::class,'invoices'])->name('Invoices')->middleware('auth')->middleware('is_admin');
+Route::get('/Quotes', [HomeController::class,'quotes'])->name('Quotes')->middleware('auth')->middleware('is_admin');
 
 
 //Routes to user management
@@ -110,11 +110,22 @@ Route::get('/generate-pdf', [CartController::class, 'getPDF'])->middleware('auth
 
 Route::get('/addInvoice', [InvoiceController::class, 'addInvoice'])->middleware('auth')->middleware('is_admin')->middleware('auth');
 Route::post('/addInvoice', [InvoiceController::class, 'store'])->middleware('auth')->middleware('is_admin')->middleware('auth');
-Route::get('/Invoice/{invoice}', [InvoiceController::class, 'index'])->name('invoice')->middleware('auth')->middleware('is_admin');
-Route::get('/Invoice/edit/{invoice}', [InvoiceController::class, 'edit'])->name('invoice')->middleware('auth')->middleware('is_admin');
-Route::put('/Invoice/{invoice}', [InvoiceController::class, 'update'])->middleware('auth')->middleware('is_admin');
-Route::delete('/invoice/{invoice}', [InvoiceController::class, 'destroy'])->middleware('auth')->middleware('is_admin');
-Route::post('/getPdf/{invoice}', [InvoiceController::class, 'getPDF'])->middleware('auth')->middleware('is_admin');
+Route::get('/Invoice/{invoice}', [InvoiceController::class, 'index'])->name('statement')->middleware('auth')->middleware('is_admin');
+Route::get('/Invoice/edit/{invoice}', [InvoiceController::class, 'edit'])->name('statement')->middleware('auth')->middleware('is_admin');
+Route::put('/invoice/{invoice}', [InvoiceController::class, 'update'])->middleware('auth')->middleware('is_admin');
+Route::delete('/Invoices/{invoice}', [InvoiceController::class, 'destroy'])->middleware('auth')->middleware('is_admin');
+Route::post('/Invoices/GetPDF/{invoice}', [InvoiceController::class, 'getPDF'])->middleware('auth')->middleware('is_admin');
+
+
+Route::get('/addQuote', [QuoteController::class, 'addQuote'])->middleware('auth')->middleware('is_admin')->middleware('auth');
+Route::post('/addQuote', [QuoteController::class, 'store'])->middleware('auth')->middleware('is_admin')->middleware('auth');
+Route::get('/Quote/{quote}', [QuoteController::class, 'index'])->name('statement')->middleware('auth')->middleware('is_admin');
+Route::get('/Quote/edit/{Quote}', [QuoteController::class, 'edit'])->name('statement')->middleware('auth')->middleware('is_admin');
+Route::put('/quote/{quote}', [QuoteController::class, 'update'])->middleware('auth')->middleware('is_admin');
+Route::delete('/Quotes/{quote}', [QuoteController::class, 'destroy'])->middleware('auth')->middleware('is_admin');
+Route::post('/Quotes/GetPDF/{Quote}', [QuoteController::class, 'getPDF'])->middleware('auth')->middleware('is_admin');
+Route::post('/QuoteToInvoice/{Quote}', [QuoteController::class, 'makeInvoice'])->middleware('auth')->middleware('is_admin');
+
 
 
 

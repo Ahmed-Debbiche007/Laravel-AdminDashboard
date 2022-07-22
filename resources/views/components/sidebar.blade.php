@@ -36,6 +36,14 @@
                 <span>Invoices</span></a>
         </li>
 
+        <li class="nav-item {{ Nav::isRoute('Quotes') }}">
+            <a class="nav-link" href="/Quotes">
+            <i class="bi bi-receipt"></i>
+                <span>Quotes</span></a>
+        </li>
+
+
+
 @auth
         <!-- Nav Item - Profile -->
         <li class="nav-item {{ Nav::isRoute('profile') }}">
