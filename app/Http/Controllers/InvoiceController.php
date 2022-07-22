@@ -48,9 +48,7 @@ class InvoiceController extends Controller
 
     public function destroy( $invoice){
         $statement = Statement::find($invoice);
-        Invoice::where('statement_id',$invoice)->delete();
         app('App\Http\Controllers\StatementController')->destroy($statement);
-      //  $invoice->delete();
         return redirect('/Invoices')->withSuccess('Invoice deleted successfully.');
 
     }

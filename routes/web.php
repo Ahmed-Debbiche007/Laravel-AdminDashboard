@@ -114,7 +114,7 @@ Route::get('/Invoice/{invoice}', [InvoiceController::class, 'index'])->name('sta
 Route::get('/Invoice/edit/{invoice}', [InvoiceController::class, 'edit'])->name('statement')->middleware('auth')->middleware('is_admin');
 Route::put('/invoice/{invoice}', [InvoiceController::class, 'update'])->middleware('auth')->middleware('is_admin');
 Route::delete('/Invoices/{invoice}', [InvoiceController::class, 'destroy'])->middleware('auth')->middleware('is_admin');
-Route::post('/Invoices/GetPDF/{invoice}', [InvoiceController::class, 'getPDF'])->middleware('auth')->middleware('is_admin');
+Route::get('/Invoices/GetPDF/{invoice}', [InvoiceController::class, 'getPDF'])->middleware('auth')->middleware('is_admin');
 
 
 Route::get('/addQuote', [QuoteController::class, 'addQuote'])->middleware('auth')->middleware('is_admin')->middleware('auth');
@@ -123,7 +123,7 @@ Route::get('/Quote/{quote}', [QuoteController::class, 'index'])->name('statement
 Route::get('/Quote/edit/{Quote}', [QuoteController::class, 'edit'])->name('statement')->middleware('auth')->middleware('is_admin');
 Route::put('/quote/{quote}', [QuoteController::class, 'update'])->middleware('auth')->middleware('is_admin');
 Route::delete('/Quotes/{quote}', [QuoteController::class, 'destroy'])->middleware('auth')->middleware('is_admin');
-Route::post('/Quotes/GetPDF/{Quote}', [QuoteController::class, 'getPDF'])->middleware('auth')->middleware('is_admin');
+Route::get('/Quotes/GetPDF/{Quote}', [QuoteController::class, 'getPDF'])->middleware('auth')->middleware('is_admin');
 Route::post('/QuoteToInvoice/{Quote}', [QuoteController::class, 'makeInvoice'])->middleware('auth')->middleware('is_admin');
 
 

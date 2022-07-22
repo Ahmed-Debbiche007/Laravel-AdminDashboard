@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Facture</title>
+    <title>{{$name}}</title>
     <style>
         /* reset */
 
@@ -370,11 +370,11 @@
                 <tr>
                     <td><span>{{ $list->name }}</span></td>
 
-                    <td><span>{{ $list->price }}</span><span data-prefix> TND</span></td>
+                    <td><span>{{ $list->price }}</span><span data-prefix></span></td>
                     <td><span>{{ $quantity[$i] }}</span></td>
-                    <td><span>{{ $list->price * $quantity[$i] }}</span><span data-prefix> TND</span></td>
+                    <td><span>{{ $list->price * $quantity[$i] }}</span><span data-prefix></span></td>
                     <td><span>{{$discount [$i]}}</span><span data-prefix>%</span></td>
-                    <td><span>{{ $list->price * $quantity[$i] * (100-$discount[$i])/100 }}</span><span data-prefix> TND</span></td>
+                    <td><span>{{ $list->price * $quantity[$i] * (100-$discount[$i])/100 }}</span><span data-prefix></span></td>
                     <td><span>{{ $list->tva  }}</span><span data-prefix>%</span></td>
                 </tr>
                 @php $i++
@@ -416,23 +416,23 @@
         </tr>
         <tr>
             <th><span>Total Hors Taxes</span></th>
-            <td><span data-prefix>$</span><span>{{$tht}}</span></td>
+            <td><span>{{$tht}}</span></td>
         </tr>
         <tr>
             <th><span>Discount</span></th>
-            <td><span data-prefix>$</span><span>{{$totalDiscount}}</span></td>
+            <td><span>{{$totalDiscount}}</span></td>
         </tr>
         <tr>
             <th><span>TVA</span></th>
-            <td><span data-prefix>$</span><span>{{$tva}}</span></td>
+            <td><span>{{$tva}}</span></td>
         </tr>
         <tr>
             <th><span>Timbre Fiscal</span></th>
-            <td><span data-prefix>$</span><span>{{$timbre}}</span></td>
+            <td><span>{{$timbre}}</span></td>
         </tr>
         <tr>
             <th><span>Total TTC</span></th>
-            <td><span data-prefix>$</span><span>{{$ttc}}</span></td>
+            <td><span>{{$ttc}}</span></td>
         </tr>
 
     </table>

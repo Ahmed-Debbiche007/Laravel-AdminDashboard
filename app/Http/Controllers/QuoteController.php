@@ -63,9 +63,15 @@ class QuoteController extends Controller
 
     public function makeInvoice ($quote){
         $statement = Statement::find($quote);
+        $old = Invoice::where('statement_id',$statement->id)->first();
+        if($old == null){
         $invoice = new Invoice();
         $invoice->statement_id = $statement->id;
         $invoice->save();
         return redirect('/Invoices')->withSuccess('Invoice added successfully.');
+    }
+    else {
+        return redirect('/Quotes')->withErrors('Invoice exists!');
+    }
     }
 }

@@ -79,20 +79,17 @@
                         </div>
                     </div>
                 </div>
-                <form id="form" method="POST" action="/{{$type}}s/GetPDF/{{$statements->statement_id}}" target="_blank">
-                    @csrf
-                    <button class="btn btn-warning m-2" type="submit"> <i class="bi bi-receipt"></i> Get PDF</button>
-                </form>
                 @if ($type == 'Quote')
-                <form id="form" method="POST" action="/QuoteToInvoice/{{$statements->statement_id}}" target="_blank">
-                    @csrf
-                    <button class="btn btn-warning m-2" type="submit"> <i class="bi bi-receipt"></i> Create Invoice</button>
+                <form id="form" method="POST" action="/QuoteToInvoice/{{$statements->statement_id}}" >
+                    @csrf                  
+                    <button class="btn btn-warning m-2" type="submit"> <i class="bi bi-receipt" ></i> Create Invoice</button>
                 </form>
                 @endif
                 <form id="form" method="POST" action="/{{$type}}s/{{$statements->statement_id}}">
                     @csrf
                     @method('DELETE')
-                    <a class="btn btn-primary m-2" href="/{{$type}}/edit/{{$statements->statement_id}}"><i class="bi bi-pencil"></i> Edit</a>
+                    <a type="submit" class="btn btn-warning m-2" type="submit" href="/{{$type}}s/GetPDF/{{$statements->statement_id}}" target="_blank"> <i class="bi bi-receipt"></i> Get PDF</a>
+                    <a class="btn btn-primary m-2" href="/{{$type}}/edit/{{$statements->statement_id}}"><i class="bi bi-pencil"></i> Edit</a>                    
                     <button class="btn btn-danger m-2" type="submit"><i class="bi bi-trash"></i>Delete</button>
                 </form>
             </div>

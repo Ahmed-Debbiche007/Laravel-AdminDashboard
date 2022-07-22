@@ -188,8 +188,9 @@ class StatementController extends Controller
         $table = $this->calculTva($statement);
        
         $date=date('d/m/Y', strtotime($statement->created_at));
-
+        $filename = $type.'-'.$id.'-'.$user->id.'.pdf';
         $data=[
+            'name' => $filename,
             'type' => $type,
             'id' => $id,
             'statement' => $statement,
@@ -202,17 +203,16 @@ class StatementController extends Controller
             'listings' => $listings,
             'timbre' => $statement->timbreFiscal,
             'discount' => $discounts,
-            'totalDiscount' =>$this->calculTotal2($statement),
+            'totalDiscount' =>$this->calculDiscount($statement),
             'quantity' => $quantities,
             'table' =>$table,
         ];
        
         $pdf = PDF::loadView('statement.statementTemplate', $data);
-        $filename = $type.'-'.$statement->id.'-'.$user->id.'.pdf';
         return $pdf->stream($filename);
     }
 
-    public function calculTotal2($statement){
+    public function calculDiscount($statement){
          $statementItems = StatementItem::all()->where('statement_id',$statement->id);
         $discount= 0;
         $totalDiscount=0;
