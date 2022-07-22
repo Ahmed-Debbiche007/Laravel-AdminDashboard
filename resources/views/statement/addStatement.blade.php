@@ -2,7 +2,7 @@
 
 @section('main-content')
 
-<x-navbar action="Statements" />
+<x-navbar action="{{$type}}s" />
 <!-- Page Heading -->
 <div class="container-fluid">
     <h1 class="h3 mb-4 text-gray-800">Add {{$type}}</h1>

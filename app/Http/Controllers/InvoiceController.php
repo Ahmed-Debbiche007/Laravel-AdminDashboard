@@ -34,7 +34,7 @@ class InvoiceController extends Controller
 
     public function edit($id)
     {
-        return app('App\Http\Controllers\StatementController')->edit($id,'invoice');
+        return app('App\Http\Controllers\StatementController')->edit($id,'invoice', 'Invoice');
     }
 
     public function update(Request $request, $id){

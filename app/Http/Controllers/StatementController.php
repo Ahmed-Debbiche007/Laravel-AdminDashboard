@@ -121,7 +121,7 @@ class StatementController extends Controller
         $this->createItems($request);       
     }
 
-    public function edit($id, $type)
+    public function edit($id, $type, $action)
     {
         $statement = Statement::find($id);
         $client = User::find($statement->client_id) ;
@@ -135,6 +135,7 @@ class StatementController extends Controller
         }
         return view('statement.editStatement', [
             'type' => $type,
+            'action' => $action,
             'statements' => $statement,
             'client' => $client,
             'listings' => $listings,

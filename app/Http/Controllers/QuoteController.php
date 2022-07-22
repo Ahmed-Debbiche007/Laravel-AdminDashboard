@@ -34,7 +34,7 @@ class QuoteController extends Controller
 
     public function edit($id)
     {
-        return app('App\Http\Controllers\StatementController')->edit($id,'quote');
+        return app('App\Http\Controllers\StatementController')->edit($id,'quote', 'Quote');
     }
 
     public function update(Request $request, $id){

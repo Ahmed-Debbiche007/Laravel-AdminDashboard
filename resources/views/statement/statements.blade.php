@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('main-content')
-<x-navbar action="Statements" />
+<x-navbar action="{{$type}}s" />
 <!-- Page Heading -->
 <div class="container-fluid">
     @if (session('success'))

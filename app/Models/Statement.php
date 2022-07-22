@@ -14,8 +14,10 @@ class Statement extends Model
     ];
     public function scopeFilter ($query, array $filters){
         $route = \Request::route()->getName();
+
         if ($route == "Quotes"){
         if ($filters['search']??false){
+
             $query->Where ('quotes.id','like', request('search'))
             ->orWhere ('statements.client_id','like', request('search'))  ;
         }
