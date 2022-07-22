@@ -11,4 +11,9 @@ class Invoice extends Model
     protected $fillable = [
         'statement_id',
     ];
+    public function scopeFilter ($query, array $filters){
+        if ($filters['search']??false){
+            $query->Where ('invoices.id','like', '%'.request('search').'%')  ;
+        }
+    }
 }

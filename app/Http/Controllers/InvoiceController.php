@@ -6,10 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers;
 use App\Models\Statement;
 use App\Models\Invoice;
-use App\Models\User;
-use App\Models\StatementItem;
-use App\Models\Listing;
-use App\Http\PostCaller;
+use App\Models\Quote;
 class InvoiceController extends Controller
 {
     public function index($id)
@@ -48,9 +45,15 @@ class InvoiceController extends Controller
 
     public function destroy( $invoice){
         $statement = Statement::find($invoice);
+        Invoice::where('statement_id',$invoice)->delete();
+        $old = Quote::where('statement_id',$statement->id)->first();
+        if($old == null){
         app('App\Http\Controllers\StatementController')->destroy($statement);
-        return redirect('/Invoices')->withSuccess('Invoice deleted successfully.');
-
+        return redirect('/Quotes')->withSuccess('Invoice deleted successfully.');
+        }
+        else {
+            return redirect('/Invoices')->withSuccess('Invoice deleted successfully.');
+        }
     }
 
     public function getPDF ($invoice){

@@ -3,14 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers;
 use App\Models\Statement;
 use App\Models\Invoice;
 use App\Models\Quote;
-use App\Models\User;
-use App\Models\StatementItem;
-use App\Models\Listing;
-use App\Http\PostCaller;
+
 class QuoteController extends Controller
 {
     public function index($id)
@@ -50,9 +46,14 @@ class QuoteController extends Controller
     public function destroy( $quote){
         $statement = Statement::find($quote);
         Quote::where('statement_id',$quote)->delete();
+        $old = Invoice::where('statement_id',$statement->id)->first();
+        if($old == null){
         app('App\Http\Controllers\StatementController')->destroy($statement);
         return redirect('/Quotes')->withSuccess('Quote deleted successfully.');
-
+        }
+        else {
+            return redirect('/Quotes')->withSuccess('Quote deleted successfully.');
+        }
     }
 
     public function getPDF ($quote){

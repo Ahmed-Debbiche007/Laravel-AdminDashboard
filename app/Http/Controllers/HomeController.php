@@ -10,6 +10,7 @@ use App\Models\Quote;
 use App\Models\Statement;
 use Illuminate\Http\Request;
 
+
 class HomeController extends Controller
 {
     /**
@@ -66,7 +67,6 @@ class HomeController extends Controller
 
     public function quotes()
     {
-       
         return view('statement.index',[
             'statements' =>Statement::join('quotes', 'statements.id','=','quotes.statement_id')->filter(request(['search']))->paginate(10),
             'allStatements' =>  Quote::latest()->get() -> count(),
