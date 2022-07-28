@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Client;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -10,7 +11,7 @@ class ClientController extends Controller
     public function index($id)
     {
         return view('dashboard.client' , [
-            'clients' => user::latest()->where('role','like','Client')->find($id),
+            'clients' => Client::latest()->find($id),
         ]);
     }
 
@@ -18,8 +19,8 @@ class ClientController extends Controller
     public function addclients()
     {
         return view('dashboard.addClient', [
-            'clients' =>  user::latest()->where('role','like','Client'),
-            'allclients' =>  user::latest()->where('role','like','Client')-> get() -> count(),
+            'clients' =>  Client::latest(),
+            'allclients' =>  Client::latest()-> get() -> count(),
         ]);
     }
     
@@ -27,7 +28,7 @@ class ClientController extends Controller
         
         $formFields= $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'last_name' => ['required', 'string', 'max:255'],
+            'matFisc' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string'],
             'tel' => ['required', 'string'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
@@ -36,13 +37,13 @@ class ClientController extends Controller
       
         $formFields['role']="Client";
         $formFields['is_admin']=0;
-        User::create($formFields);
+        Client::create($formFields);
 
-        return redirect('/Clients')->withSuccess('Client added successfully.');
+        return redirect('/Clients')->withSuccess('Client  ajouté avec succées.');
     }
 
     //This function let the admin edit any user, let the guest user edit his profile 
-    public function update(Request $request, User $client)
+    public function update(Request $request, Client $client)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -52,20 +53,19 @@ class ClientController extends Controller
             'email' => 'required|string|email|max:255',
         ]);
         $client->name = $request->input('name');
-        $client->last_name = $request->input('last_name');
+        $client->matFisc = $request->input('last_name');
         $client->address = $request->input('address');
         $client->tel = $request->input('tel');
         $client->email = $request->input('email');
-        $client->role ="Client";
-        $client->is_admin =0;
+
         
         $client->update();
 
-        return redirect('/Clients')->withSuccess('Client updated successfully.');
+        return redirect('/Clients')->withSuccess('Client  modifié avec succées.');
     }
 
     //This function let the admin edit any user's password, let the guest user edit his password 
-    public function updatePassword(Request $request, User $client){
+    public function updatePassword(Request $request, Client $client){
         $request->validate([
             'password' => 'nullable|required_with:new_password',
             'new_password' => 'nullable|min:8|max:12|required_with:current_password',
@@ -80,13 +80,29 @@ class ClientController extends Controller
             }
         }
         $client->update();
-        return redirect('/Clients')->withSuccess('Client updated successfully.');
+        return redirect('/Clients')->withSuccess('Client  modifié avec succées.');
     }
 
     //This function let the admin delete any users
-    public function destroy(User $client){
+    public function destroy(Client $client){
         $client->delete();
-        return redirect('/Clients')->withSuccess('Client deleted successfully.');
+        return redirect('/Clients')->withSuccess('Client  supprimé avec succées');
+
+    }
+
+    public function makeUser(Client $client){
+        $user = new User();
+        $user->name = $client->name;
+        $user->last_name = " ";
+        $user->photo = $client->photo;
+        $user->address =$client->address ; 
+        $user->tel =$client->tel ; 
+        $user->email =$client->email ; 
+        $user->role ="Client"; 
+        $user->is_admin =0; 
+        $user->password =$client->password;
+        $user->save();
+        return redirect('/Dashboard')->withSuccess('Utilisateur ajouté avec succées.');
 
     }
     

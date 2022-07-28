@@ -80,6 +80,7 @@ Route::put('/client/password/{user}', [ClientController::class, 'updatePassword'
 Route::delete('/client/{client}', [ClientController::class, 'destroy'])->middleware('auth')->middleware('is_admin');
 // Route to the delete request from the dashboard
 Route::delete('/home/{client}', [ClientController::class, 'destroy'])->middleware('auth')->middleware('is_admin');
+Route::get('/makeUser/{client}', [ClientController::class, 'makeUser'])->middleware('auth')->middleware('is_admin');
 
 
 //Routes to listings management
@@ -105,7 +106,7 @@ Route::get('/Cart', [CartController::class, 'cart'])->middleware('auth');
 Route::get('/add-to-cart/{id}', [CartController::class, 'addToCart'])->middleware('auth');
 Route::patch('/update-cart', [CartController::class, 'updateCart'])->name('update.cart');;
 Route::delete('/remove-from-cart', [CartController::class, 'remove'])->name('remove.from.cart');
-Route::get('/generate-pdf', [CartController::class, 'getPDF'])->middleware('auth');
+Route::post('/Order', [CartController::class, 'store'])->middleware('auth');
 
 
 Route::get('/addInvoice', [InvoiceController::class, 'addInvoice'])->middleware('auth')->middleware('is_admin')->middleware('auth');

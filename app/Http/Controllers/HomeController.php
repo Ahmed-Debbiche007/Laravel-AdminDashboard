@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-
+use App\Models\Client;
 use App\Models\Invoice;
 use App\Models\Listing;
 use App\Models\Quote;
@@ -31,8 +31,8 @@ class HomeController extends Controller
     public function index()
     {
         return view('dashboard.home', [
-            'users' => user::where('role','not like','Client')->filter(request(['search']))->paginate(10),
-            'allUsers' => user::where('role','not like','Client')->count(),
+            'users' => user::latest()->filter(request(['search']))->paginate(10),
+            'allUsers' => user::latest() ->get()->count(),
         ]);
     }
 
@@ -50,8 +50,8 @@ class HomeController extends Controller
     {
        
         return view('dashboard.clients',[
-            'clients' => user::latest()->where('role','like','Client')->filter(request(['search']))->paginate(10),
-            'allClients' =>  user::latest()->where('role','like','Client')-> get() -> count(),
+            'clients' => Client::latest()->filter(request(['search']))->paginate(10),
+            'allClients' =>  Client::latest()-> get() -> count(),
         ] );
     }
 

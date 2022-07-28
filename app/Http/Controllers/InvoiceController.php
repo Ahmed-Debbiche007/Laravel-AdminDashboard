@@ -22,7 +22,7 @@ class InvoiceController extends Controller
 
     public function store(Request $request)
     {
-        app('App\Http\Controllers\StatementController')->store($request);
+        app('App\Http\Controllers\StatementController')->store($request , 'Invoice');
         $statement = Statement::latest()->first();
         $invoice = new Invoice();
         $invoice->statement_id = $statement->id;
@@ -39,7 +39,7 @@ class InvoiceController extends Controller
 
     public function update(Request $request, $id){
         $statement = Statement::find($id);
-        app('App\Http\Controllers\StatementController')->update($request, $statement);
+        app('App\Http\Controllers\StatementController')->update($request, $statement, "Invoice");
         return redirect('/Invoices')->withSuccess('Invoice updated successfully.');
     }
 
@@ -49,7 +49,7 @@ class InvoiceController extends Controller
         $old = Quote::where('statement_id',$statement->id)->first();
         if($old == null){
         app('App\Http\Controllers\StatementController')->destroy($statement);
-        return redirect('/Quotes')->withSuccess('Invoice deleted successfully.');
+        return redirect('/Invoices')->withSuccess('Invoice deleted successfully.');
         }
         else {
             return redirect('/Invoices')->withSuccess('Invoice deleted successfully.');

@@ -67,13 +67,13 @@
         <div class="flex-center position-ref full-height">
             
                 <div class="top-right links">  
-                <a href="{{ url('/') }}">Dashboard</a>                      
+                <a href="{{ url('/') }}">Acceuil</a>                      
                     @guest
                     @if (Route::has('login'))
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">Connexion</a>
                     @endif
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">S'inscrire</a>
                         @endif
 
                     @endauth

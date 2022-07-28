@@ -19,3 +19,18 @@ td.appendChild(rm);
 clone.appendChild(td);
 table.appendChild(clone);
 })
+
+function Enable(){
+   const check = document.getElementById("check");
+   const number = document.getElementById("number");
+   
+   if (check.checked == true){
+      number.disabled = false;
+   }else{
+       number.disabled = true;
+   }
+   }
+
+
+
+

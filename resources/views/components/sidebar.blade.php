@@ -15,13 +15,13 @@
         <li class="nav-item {{ Nav::isRoute('home') }}">
             <a class="nav-link" href="/Dashboard">
             <i class="bi bi-speedometer2"></i>
-                <span>{{ __('Dashboard') }}</span></a>
+                <span>{{ __('Tableau de bord') }}</span></a>
         </li>
 
         <li class="nav-item {{ Nav::isRoute('Listings') }}">
             <a class="nav-link" href="/Listings">
             <i class="bi bi-box-seam"></i>
-                <span>Listings</span></a>
+                <span>Produits</span></a>
         </li>
 
         <li class="nav-item {{ Nav::isRoute('Clients') }}">
@@ -33,13 +33,13 @@
         <li class="nav-item {{ Nav::isRoute('Invoices') }}">
             <a class="nav-link" href="/Invoices">
             <i class="bi bi-receipt"></i>
-                <span>Invoices</span></a>
+                <span>Factures</span></a>
         </li>
 
         <li class="nav-item {{ Nav::isRoute('Quotes') }}">
             <a class="nav-link" href="/Quotes">
             <i class="bi bi-receipt"></i>
-                <span>Quotes</span></a>
+                <span>Devis</span></a>
         </li>
 
 

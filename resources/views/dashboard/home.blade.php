@@ -37,7 +37,7 @@
 
             <!-- Color System -->
             <div class="row">
-                <div class="col-md-8 mb-4">
+                <div class="col-md-12 mb-4">
                     <div class="card  shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
@@ -57,7 +57,7 @@
                                             @foreach ($users as $user)
                                             <tr>
                                                 <td>{{$user->id}}</td>
-                                                <td> <img style="height: 45px; border-radius: 50%;" src="https://st2.depositphotos.com/2619903/6028/v/600/depositphotos_60287149-stock-illustration-no-image-signs-for-web.jpg" alt=""></td>
+                                                <td> <img style="height: 45px; width: 45px; border-radius: 50% ;" src="{{$user->photo ? asset('/storage/'.$user->photo) : asset('https://st2.depositphotos.com/2619903/6028/v/600/depositphotos_60287149-stock-illustration-no-image-signs-for-web.jpg')}}" alt=""></td>
                                                 <td>{{$user->name}} {{$user->last_name}}</td>
                                                 <td>{{$user->email}}</td>
                                                 <td>{{$user->role}}</td>

@@ -20,6 +20,7 @@ class CreateStatementItemTable extends Migration
             $table->unsignedBigInteger('listing_id');
             $table->foreign('listing_id')->references('id')->on('listings')->onUpdate('cascade');
             $table->float('quantity');
+            $table->float('price');
             $table->float('discount');
             $table->timestamps();
         });

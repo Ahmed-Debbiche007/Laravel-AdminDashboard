@@ -23,8 +23,8 @@
     @endif
     <form method="POST" action="/{{$type}}/{{$statements->id}}" class="user">
     <input type="hidden" name="_method" value="PUT">
-        <div class="row" id="row">
-            <div class="col-xl-4 col-md-4 mb-4" style="max-height: 500px ;" id="card">
+        
+            <div class="col-xl-12 col-md-4 mb-4" style="max-height: 500px ;" id="card">
                 <div class="card border-left-primairy shadow h-100 py-2">
                     <div class="card-body">
 
@@ -47,28 +47,29 @@
                             <div class="form-group">
                                 <label class="form-control-label" for="client_id">Client</label>
                                 <select name="client_id" id="client_id" class="form-control " style="border-radius: 50px;" required>
-                                    <option value="{{$client->id}}" selected>{{$client->name}} {{$client->last_name}}</option>
+                                    <option value="{{$client->id}}" selected>{{$client->name}} </option>
                                     @foreach ($clients as $oclient)
                                     @if ($client->id != $oclient->id)
-                                    <option value="{{$oclient->id}}">{{$oclient->name}} {{$oclient->last_name}}</option>
+                                    <option value="{{$oclient->id}}">{{$oclient->name}}</option>
                                     @endif
                                     @endforeach
                                 </select>
 
                             </div>
-
+@if ($type == "invoice")
                             <div class="form-group">
+                                <input type="checkbox" id="check" onchange="Enable()">
                                 <label class="form-control-label" for="timbreFiscal">Timbre Fiscal</label>
-                                <input type="number" step="0.01" class="form-control form-control-user" name="timbreFiscal" placeholder="{{$statements->timbreFiscal}}" value="{{$statements->timbreFiscal}}" required>
+                                <input type="number" step="0.01" class="form-control form-control-user" name="timbreFiscal" placeholder="{{$statements->timbreFiscal}}" value="{{$statements->timbreFiscal}}" id="number" disabled>
                             </div>
-
+                            @endif
                         </div>
 
 
                     </div>
                 </div>
             </div>
-            <div class="col-xl-4 col-md-6 mb-4">
+            <div class="col-xl-12 col-md-6 mb-4">
                 <div class="card border-left-primairy shadow h-100 py-2" style="height: 390px ;">
                     <div class="card-body">
 
@@ -79,6 +80,7 @@
                                     <tr class="text-dark">
                                         <th scope="col">Product</th>
                                         <th scope="col">Quantity</th>
+                                        <th scope="col">Price</th>
                                         <th scope="col">Discount</th>
 
 
@@ -88,7 +90,7 @@
                                     @foreach ($listings as $listing)
                                     <tr id="tr">
                                         <td>
-                                            <select name="listing[]" id="listing" class="form-control " style="border-radius: 50px;" required>
+                                            <select name="listing[]" id="listing" onchange="changePrice()" class="form-control " style="border-radius: 50px;" required>
                                             <option value="{{$listing->id}}" selected>{{$listing->name}} </option>
                                                 @foreach ($olistings as $olisting)
                                                 @if ($listing->id!=$olisting->id)
@@ -102,6 +104,12 @@
                                         <td>
                                             <div class="form-group">
                                                 <input type="number" step="1" class="form-control form-control-user" name="quantity[]" value="{{$listing->quantity}}" required>
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="number" step="1" id="price" class="form-control form-control-user" name="price[]" placeholder="{{$listing->price}}" value="{{$listing->price}}" required>
                                             </div>
                                         </td>
 
@@ -138,7 +146,7 @@
             </div>
 
 
-            <div class="col-xl-4 col-md-6 mb-4">
+            <div class="col-xl-12 col-md-6 mb-4">
 
 
 
@@ -154,10 +162,16 @@
 
             </div>
 
-        </div>
+        
 
     </form>
 </div>
 <script src="{{ URL::asset('js/editInvoice.js') }}"></script>
+<script>
+function changePrice(){
+   var listings =  {!! json_encode($olistings) !!};
+document.getElementById("price").value= listings[document.getElementById("listing").options[document.getElementById("listing").selectedIndex].value -1]["price"];
+}
+</script>
 
 @endsection

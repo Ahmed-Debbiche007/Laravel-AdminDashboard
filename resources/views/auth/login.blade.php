@@ -12,7 +12,7 @@
                         <div class="">
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">{{ __('Login') }}</h1>
+                                    <h1 class="h4 text-gray-900 mb-4">{{ __('Connexion') }}</h1>
                                 </div>
 <hr>
                                 @if ($errors->any())
@@ -29,11 +29,11 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" name="email" placeholder="{{ __('E-Mail Address') }}" value="{{ old('email') }}" required autofocus>
+                                        <input type="email" class="form-control form-control-user" name="email" placeholder="{{ __('E-Mail') }}" value="{{ old('email') }}" required autofocus>
                                     </div>
 
                                     <div class="form-group">
-                                        <input data-toggle="password" type="password" class="form-control form-control-user" name="password" placeholder="{{ __('Password') }}" required>
+                                        <input data-toggle="password" type="password" class="form-control form-control-user" name="password" placeholder="{{ __('Mot de pasee') }}" required>
                                     </div>
 
                                     <div class="form-group">
@@ -45,7 +45,7 @@
 
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            {{ __('Login') }}
+                                            {{ __('Connexion') }}
                                         </button>
                                     </div>
 
@@ -59,7 +59,7 @@
 
                                 @if (Route::has('register'))
                                     <div class="text-center">
-                                        <a class="small" href="{{ route('register') }}">{{ __('Create an Account!') }}</a>
+                                        <a class="small" href="{{ route('register') }}">{{ __('Créer un compte!') }}</a>
                                     </div>
                                 @endif
                             </div>

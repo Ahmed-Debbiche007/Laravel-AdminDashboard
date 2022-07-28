@@ -26,7 +26,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => bcrypt($pieces[0]), // password
             'remember_token' => Str::random(10),
-            'role'=> ($rand == 1)? 'Guest' : 'Client',
+            'role'=> ($rand == 1)? 'Guest' : 'Admin',
             'is_admin'=> $rand ,
         ];
     }

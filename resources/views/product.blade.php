@@ -116,22 +116,23 @@
 
         </div>
     </div>
-
+    @if(Auth::user()->role == 'Client')
     <div class="card shadow mb-4">
       
       <div class="card-body">
 
+
           <div class="row">
               <div class="col-lg-12">
                   <div class="text-center">
-                     <a href="/add-to-cart/{{$listings->id}}"><button class="btn btn-primary m-2">Buy Service</button></a>
+                     <a href="/add-to-cart/{{$listings->id}}"><button class="btn btn-primary m-2">Ajouter au panier</button></a>
                   </div>
               </div>
           </div>
 
       </div>
   </div>
-
+  @endif
       </div>
   </div>
 

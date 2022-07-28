@@ -60,7 +60,7 @@
 
                             <div class="form-group">
                             <label class="form-control-label" for="photo">Photo</label><br>
-                            <input type="file" name="photo" />
+                            <input type="file" name="photo">
                             </div>
 
                             <div class="form-group">

@@ -82,7 +82,7 @@
   <div class="content">
     <!-- Page Heading -->
     <div class="container-fluid">
-      <h1 class="h3 mb-4 text-gray-800">{{ __('Listings') }}</h1>
+      <h1 class="h3 mb-4 text-gray-800">{{ __('Produits') }}</h1>
 
       @if ((count($listings) !=0))
 
@@ -106,7 +106,7 @@
                   <x-productTag :tagsCsv="$listing->tags" />
                   <br>
                   @if(Auth::user()->role == 'Client')
-                  <a href="/add-to-cart/{{$listing->id}}"><button class="btn btn-primary m-2">Add To Cart</button></a>
+                  <a href="/add-to-cart/{{$listing->id}}"><button class="btn btn-primary m-2">Ajouter au panier </button></a>
                   @endif
                 </div>
               </div>
@@ -129,7 +129,7 @@
       <div class="row">
 
         <!-- Content Column -->
-        No Products Yet
+        Pas de produits!
 
       </div>
       @endif

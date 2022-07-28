@@ -22,7 +22,7 @@ class QuoteController extends Controller
 
     public function store(Request $request)
     {
-        app('App\Http\Controllers\StatementController')->store($request);
+        app('App\Http\Controllers\StatementController')->store($request, 'Quote');
         $statement = Statement::latest()->first();
         $quote = new Quote();
         $quote->statement_id = $statement->id;
@@ -39,7 +39,7 @@ class QuoteController extends Controller
 
     public function update(Request $request, $id){
         $statement = Statement::find($id);
-        app('App\Http\Controllers\StatementController')->update($request, $statement);
+        app('App\Http\Controllers\StatementController')->update($request, $statement, "Quote");
         return redirect('/Quotes')->withSuccess('Quote updated successfully.');
     }
 

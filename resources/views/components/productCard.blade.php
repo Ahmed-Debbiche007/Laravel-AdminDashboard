@@ -5,7 +5,7 @@
             <div class="col-lg-12" id = "list">
 
                 <div class="form-group">
-                    <label class="form-control-label" for="client">Product</label>
+                    <label class="form-control-label" for="client">Produit</label>
                     <select name="listing" id="listing" class="form-control form-control-user" required>
                         @foreach ($listings as $listing)
                         <option value="$listing->id">{{$listing->name}}</option>
@@ -14,19 +14,19 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-control-label" for="quantity">Quantity</label>
+                    <label class="form-control-label" for="quantity">Quantité</label>
                     <input type="number" step="1" class="form-control form-control-user" name="quantity" placeholder="{{ __('0') }}" value="{{ old('quantity') }}" required>
                 </div>
 
 
                 <div class="form-group">
-                    <label class="form-control-label" for="price">Discount</label>
+                    <label class="form-control-label" for="price">Remise</label>
                     <input type="number" step="0.01" class="form-control form-control-user" name="discount" placeholder="{{ __('0.00') }}" value="{{ old('discount') }}" required>
                 </div>
 
                 <div class="form-group" id="btn">
                     <button type="button" class="btn btn-primary btn-user btn-block">
-                        <i class="bi bi-plus-circle"></i> Add Product
+                        <i class="bi bi-plus-circle"></i> Ajouter un produit
                     </button>
                 </div>
 

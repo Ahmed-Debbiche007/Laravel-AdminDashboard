@@ -61,7 +61,7 @@
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                             <i class="bi bi-box-arrow-right text-gray-600"></i></i>
-                                {{ __('Logout') }}
+                                {{ __('Déconnexion') }}
                             </a>
                         </div>
                     </li>

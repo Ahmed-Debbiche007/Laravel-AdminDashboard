@@ -76,7 +76,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Welcome To My Company
+                   Bienvenue
                 </div>
             </div>
         </div>

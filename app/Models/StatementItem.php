@@ -9,6 +9,6 @@ class StatementItem extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'statement_id','listing_id','discount','quantity',
+        'statement_id','listing_id','discount','quantity','price,'
     ];
 }

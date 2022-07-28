@@ -90,119 +90,129 @@
       @else
 
       @if (Route::has('login'))
-      <a href="{{ route('login') }}">Login</a>
+      <a href="{{ route('login') }}">Connexion</a>
       @endif
       @if (Route::has('register'))
-      <a href="{{ route('register') }}">Register</a>
+      <a href="{{ route('register') }}">S'inscrire</a>
       @endif
       @endauth
 
     </div>
 
   </div>
-  @if(session('success'))
-  <div class="alert alert-success">
-    {{ session('success') }}
-  </div>
-  @endif
+  @if (session('status'))
+    <div class="alert alert-success border-left-success" role="alert">
+        {{ session('status') }}
+    </div>
+    @endif  
 
   <div class="content">
     <!-- Page Heading -->
-    
-    <table id="cart" class="table table-hover table-condensed">
-      <thead>
-        <tr>
-          <th style="width:50%">Product</th>
-          <th style="width:10%">Price</th>
-          <th style="width:8%">Quantity</th>
-          <th style="width:22%" class="text-center">Subtotal</th>
-          <th style="width:10%"></th>
-        </tr>
-      </thead>
-      <tbody>
-        @php $total = 0 @endphp
-        @if(session('cart'))
-        @foreach(session('cart') as $id => $details)
-        @php $total += $details['price'] * $details['quantity'] @endphp
-        <tr data-id="{{ $id }}">
-          <td data-th="Product">
-            <div class="row">
-              <div class="col-sm-3 hidden-xs"><img src="{{ $details['image'] }}" width="100" height="100" class="img-responsive" /></div>
-              <div class="col-sm-9">
-                <h4 class="nomargin">{{ $details['name'] }}</h4>
+    <form method="POST" action="/Order" class="user">
+      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+      @php
+      $id = Auth::user()->id ;
+      @endphp
+      <input type="hidden" name="client_id" value="{{$id}}">
+      <input type="hidden" name="timbreFiscal" value="0.6">
+      <table id="cart" class="table table-hover table-condensed">
+        <thead>
+          <tr>
+            <th style="width:50%">Produit</th>
+            <th style="width:10%">Prix</th>
+            <th style="width:8%">Quantité</th>
+            <th style="width:22%" class="text-center">Total</th>
+            <th style="width:10%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @php $total = 0 @endphp
+          @if(session('cart'))
+          @foreach(session('cart') as $id => $details)
+          @php $total += $details['price'] * $details['quantity'] @endphp
+          <tr data-id="{{ $id }}">
+            <td data-th="Product">
+              <div class="row">
+                <div class="col-sm-3 hidden-xs"><img src="{{ $details['image'] }}" width="100" height="100" class="img-responsive" /></div>
+                <div class="col-sm-9">
+                  <h4 class="nomargin">{{ $details['name'] }}</h4>
+                  <input type="hidden" name="listing[]" value="{{$id}}">
+                  <input type="hidden" name="discount[]" value="0">
+                  <input type="hidden" name="tht" value=0>
+                  <input type="hidden" name="ttc" value=0>
+                </div>
               </div>
-            </div>
-          </td>
-          <td data-th="Price">${{ $details['price'] }}</td>
-          <td data-th="Quantity">
-            <input type="number" value="{{ $details['quantity'] }}" class="form-control quantity update-cart" />
-          </td>
-          <td data-th="Subtotal" class="text-center">${{ $details['price'] * $details['quantity'] }}</td>
-          <td class="actions" data-th="">
-            <button class="btn btn-danger m-2  remove-from-cart" type="button"><i class="bi bi-trash"></i></button>
-          </td>
-        </tr>
-        @endforeach
-        @endif
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="5" class="text-right">
-            <h3><strong>Total ${{ $total }}</strong></h3>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="5" class="text-right">
-            <a href="{{ url('/Products') }}" class="btn btn-warning" ><i class="fa fa-angle-left"></i> Continue Shopping</a>
-            <a href="{{ url('/generate-pdf') }}" target="_blank" class="btn btn-success"> Checkout </a>
-          </td>
-        </tr>
-      </tfoot>
-    </table>
-    
+            </td>
+            <td data-th="Price">${{ $details['price'] }}</td>
+
+            <td data-th="Quantity">
+              <input type="number" value="{{ $details['quantity'] }}" class="form-control quantity update-cart" name="quantity[]" />
+            </td>
+            <td data-th="Subtotal" class="text-center">${{ $details['price'] * $details['quantity'] }}</td>
+            <td class="actions" data-th="">
+              <button class="btn btn-danger m-2  remove-from-cart" type="button"><i class="bi bi-trash"></i></button>
+            </td>
+          </tr>
+          @endforeach
+          @endif
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="5" class="text-right">
+              <h3><strong>Total ${{ $total }}</strong></h3>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5" class="text-right">
+              <a href="{{ url('/Products') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continuer vos achats</a>
+              <button type="submit" class="btn btn-success"> Commander </button>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </form>
+
   </div>
   <script type="text/javascript">
-  
-  $(".update-cart").change(function (e) {
+    $(".update-cart").change(function(e) {
       e.preventDefault();
 
       var ele = $(this);
 
       $.ajax({
-          url: '{{ route("update.cart") }}',
-          method: "patch",
-          data: {
-              _token: '{{ csrf_token() }}', 
-              id: ele.parents("tr").attr("data-id"), 
-              quantity: ele.parents("tr").find(".quantity").val()
-          },
-          success: function (response) {
-             window.location.reload();
-          }
+        url: '{{ route("update.cart") }}',
+        method: "patch",
+        data: {
+          _token: '{{ csrf_token() }}',
+          id: ele.parents("tr").attr("data-id"),
+          quantity: ele.parents("tr").find(".quantity").val()
+        },
+        success: function(response) {
+          window.location.reload();
+        }
       });
-  });
+    });
 
-  $(".remove-from-cart").click(function (e) {
+    $(".remove-from-cart").click(function(e) {
       e.preventDefault();
 
       var ele = $(this);
 
-      if(confirm("Are you sure want to remove?")) {
-          $.ajax({
-              url: '{{ route("remove.from.cart") }}',
-              method: "DELETE",
-              data: {
-                  _token: '{{ csrf_token() }}', 
-                  id: ele.parents("tr").attr("data-id")
-              },
-              success: function (response) {
-                  window.location.reload();
-              }
-          });
+      if (confirm("Are you sure want to remove?")) {
+        $.ajax({
+          url: '{{ route("remove.from.cart") }}',
+          method: "DELETE",
+          data: {
+            _token: '{{ csrf_token() }}',
+            id: ele.parents("tr").attr("data-id")
+          },
+          success: function(response) {
+            window.location.reload();
+          }
+        });
       }
-  });
-
-</script>
+    });
+  </script>
 </body>
 
 </html>

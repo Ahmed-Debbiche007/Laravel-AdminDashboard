@@ -10,7 +10,7 @@
                         <div>
                             <div class="p-5">
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">{{ __('Register') }}</h1>
+                                    <h1 class="h4 text-gray-900 mb-4">{{ __("S'inscrire") }}</h1>
                                 </div>
 <hr>
                                 @if ($errors->any())
@@ -27,36 +27,36 @@
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" name="name" placeholder="{{ __('Name') }}" value="{{ old('name') }}" required autofocus>
+                                        <input type="text" class="form-control form-control-user" name="name" placeholder="{{ __('Nom') }}" value="{{ old('name') }}" required autofocus>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" name="last_name" placeholder="{{ __('Last Name') }}" value="{{ old('last_name') }}" required>
+                                        <input type="text" class="form-control form-control-user" name="last_name" placeholder="{{ __('Prénom') }}" value="{{ old('last_name') }}" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="address" class="form-control form-control-user" name="address" placeholder="{{ __('Address') }}" value="{{ old('address') }}" required>
+                                        <input type="address" class="form-control form-control-user" name="address" placeholder="{{ __('Addresse') }}" value="{{ old('address') }}" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="tel" class="form-control form-control-user" name="tel" placeholder="{{ __('Phone Number') }}" value="{{ old('tel') }}" required>
+                                        <input type="tel" class="form-control form-control-user" name="tel" placeholder="{{ __('Numéro de téléphone') }}" value="{{ old('tel') }}" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" name="email" placeholder="{{ __('E-Mail Address') }}" value="{{ old('email') }}" required>
+                                        <input type="email" class="form-control form-control-user" name="email" placeholder="{{ __('E-Mail') }}" value="{{ old('email') }}" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <input data-toggle="password" type="password" class="form-control form-control-user" name="password" placeholder="{{ __('Password') }}" required>
+                                        <input data-toggle="password" type="password" class="form-control form-control-user" name="password" placeholder="{{ __('Mot de passe') }}" required>
                                     </div>
 
                                     <div class="form-group">
-                                        <input data-toggle="password" type="password" class="form-control form-control-user" name="password_confirmation" placeholder="{{ __('Confirm Password') }}" required>
+                                        <input data-toggle="password" type="password" class="form-control form-control-user" name="password_confirmation" placeholder="{{ __('Confirmer votre mot de passe') }}" required>
                                     </div>
 
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            {{ __('Register') }}
+                                            {{ __("S'inscrire") }}
                                         </button>
                                     </div>
                                 </form>
@@ -65,7 +65,7 @@
 
                                 <div class="text-center">
                                     <a class="small" href="{{ route('login') }}">
-                                        {{ __('Already have an account? Login!') }}
+                                        {{ __('Vous avez déja un compte? Connexion!!') }}
                                     </a>
                                 </div>
                             </div>

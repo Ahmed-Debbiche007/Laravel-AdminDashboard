@@ -24,7 +24,7 @@
     <x-userCard :users="$allClients">
         @if (Auth::user()->role == 'Admin')
         <div>
-            <a class="btn btn-primary m-2" href="/addClient"><i class="bi bi-plus-circle"></i> Add Client</a>
+            <a class="btn btn-primary m-2" href="/addClient"><i class="bi bi-plus-circle"></i> Ajouter un Client</a>
         </div>
         @endif
     </x-userCard>
@@ -37,7 +37,7 @@
 
             <!-- Color System -->
             <div class="row">
-                <div class="col-md-8 mb-4">
+                <div class="col-md-12 mb-4">
                     <div class="card  shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
@@ -47,8 +47,9 @@
                                             <tr class="text-dark">
                                                 <th scope="col">ID</th>
                                                 <th scope="col">Photo</th>
-                                                <th scope="col">Name</th>
-                                                <th scope="col">Mail</th>
+                                                <th scope="col">Nom</th>
+                                               
+                                                <th scope="col">E-mail</th>
                                                
                                             </tr>
                                         </thead>
@@ -57,7 +58,8 @@
                                             <tr>
                                                 <td>{{$client->id}}</td>
                                                 <td> <img style="height: 40px; border-radius: 50%;" src="https://st2.depositphotos.com/2619903/6028/v/600/depositphotos_60287149-stock-illustration-no-image-signs-for-web.jpg" alt=""></td>
-                                                <td>{{$client->name}} {{$client->last_name}}</td>
+                                                <td>{{$client->name}}</td>
+                                             
                                                 <td>{{$client->email}}</td>
                                                
                                                 @if (Auth::user()->role == 'Admin')
@@ -65,8 +67,9 @@
                                                     @csrf
                                                     @method('DELETE')
                                                     <td>
-                                                        <a class="btn btn-primary m-2" href="/client/{{$client->id}}"><i class="bi bi-pencil"></i>Edit</a>
-                                                        <button class="btn btn-danger m-2" type="submit"><i class="bi bi-trash"></i>Delete</button>
+                                                        <a class="btn btn-primary m-1" href="/client/{{$client->id}}"><i class="bi bi-pencil"></i>Modifier</a>
+                                                        <a class="btn btn-warning m-2" href="/makeUser/{{$client->id}}" > <i class="bi bi-receipt"></i> Créer un utilisateur</a>
+                                                        <button class="btn btn-danger m-1" type="submit"><i class="bi bi-trash"></i>Supprimer</button>
                                                     <td>
                                                 </form>
                                                 @endif

@@ -324,7 +324,8 @@
         </address>
         <address class="Client">
 
-            <p>{{$user->name}} {{$user->last_name}}</p>
+            <p>{{$user->name}}</p>
+            <p>{{$user->matFisc}}</p>
             <p>{{$user->email}} </p>
             <p>{{$user->address}}</p>
             <p>{{$user->tel}}</p>
@@ -426,10 +427,12 @@
             <th><span>TVA</span></th>
             <td><span>{{$tva}}</span></td>
         </tr>
+        @if ($type == 'INVOICE')
         <tr>
             <th><span>Timbre Fiscal</span></th>
             <td><span>{{$timbre}}</span></td>
         </tr>
+        @endif
         <tr>
             <th><span>Total TTC</span></th>
             <td><span>{{$ttc}}</span></td>

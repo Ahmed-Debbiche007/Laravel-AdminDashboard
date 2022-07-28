@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Listing;
+use App\Models\Order;
+use App\Models\Statement;
 use Illuminate\Support\Facades\Auth;
 use PDF;
 
@@ -97,9 +99,22 @@ class CartController extends Controller
             'user' => $user,
             'date' => date('d/m/Y')
         ];
-        $pdf = PDF::loadView('invoice.cartTemplate', $data);
+        $pdf = PDF::loadView('statement.cartTemplate', $data);
         $filename = 'Bill.pdf';
         return $pdf->stream($filename);
+
+    }
+
+    public function store(Request $request)
+    {
+        
+        app('App\Http\Controllers\StatementController')->store($request);
+        $statement = Statement::latest()->first();
+        $order = new Order();
+        $order->statement_id = $statement->id;
+        $order->save();
+
+        return redirect('/Products')->withSuccess('Order added successfully.');
 
     }
 }
